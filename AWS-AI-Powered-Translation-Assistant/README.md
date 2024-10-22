@@ -2,7 +2,7 @@
 
 ## **Introduction**
 
-This guide provides a step-by-step walkthrough for setting up and using the **AWS-AI-Powered-Translation-Assistant**. The application leverages **Amazon Bedrock** and **Generative AI** for text translation across multiple languages, providing three user interfaces: text, chat, and file-based translations.
+This guide provides a step-by-step walkthrough for setting up and using the **AWS-AI-Powered-Translation-Assistant**. The application leverages **Amazon Bedrock** and **Generative AI** for text translation across multiple languages, providing three user interfaces: text input, chat, and file-based translations.
 
 ## **Goal**
 
@@ -31,8 +31,8 @@ Each interface interacts with **Amazon Bedrock** for translation, using **Stream
 Clone the GitHub repository to your local environment:
 
 ```bash
-git clone https://github.com/repo.git
-cd aws-ai-powered-translation-assistant
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
+cd AWS-First-GenAI-Journey
 ```
 
 Key files include:
