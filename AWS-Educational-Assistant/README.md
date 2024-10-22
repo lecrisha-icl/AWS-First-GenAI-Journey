@@ -1,50 +1,51 @@
-### AWS Educational Assistant: Technical Overview
+```markdown
+# AWS Educational Assistant: Technical Overview
 
-The **AWS Educational Assistant** project demonstrates the integration of Amazon Bedrock and Anthropic's Claude 3 Sonnet model. It illustrates how these services, combined with Langchain and a Streamlit web interface, can be used to build an educational assistant application. This guide provides a step-by-step approach to deploying and running the project.
+The **AWS Educational Assistant** project demonstrates the integration of Amazon Bedrock and Anthropic's Claude 3 Sonnet model. This repository showcases how these services, combined with Langchain and a Streamlit web interface, can be leveraged to build an educational assistant application. This guide provides step-by-step instructions for deploying and running the project.
 
 ---
 
-### Key Features
+## Key Features
 
 1. **Amazon Bedrock Integration**:
-   - Leverages Amazon Bedrock to access powerful foundation models, such as Claude 3, in a scalable, serverless manner.
-
+   - Utilizes Amazon Bedrock for scalable access to advanced foundation models like Claude 3 in a serverless environment.
+   
 2. **Anthropic Claude 3 Sonnet**:
-   - Utilizes Claude 3 Sonnet for advanced natural language understanding and generation, enabling meaningful educational interactions.
+   - Employs Claude 3 Sonnet for natural language understanding and generation, supporting educational use cases.
 
 3. **Langchain Integration**:
-   - Incorporates Langchain for chaining complex workflows and prompts, allowing efficient task automation and language model-driven responses.
+   - Integrates Langchain to enable chaining of complex workflows and automated responses based on natural language prompts.
 
 4. **Streamlit Web Interface**:
-   - Provides a real-time, interactive user interface for users to engage with the assistant via Streamlit.
+   - Offers an interactive, real-time user interface built with Streamlit for user interaction with the assistant.
 
 ---
 
-### Prerequisites
+## Prerequisites
 
 1. **Python (version 3.8 or later)**
-2. **AWS CLI** (configured for Amazon Bedrock usage)
-3. **Git** (to clone the project repository)
+2. **AWS CLI** (configured for Amazon Bedrock access)
+3. **Git** (to clone the repository)
 
 ---
 
-### Step-by-Step Setup Guide
+## Step-by-Step Setup Guide
 
-#### 1. Install Python
+### 1. Install Python
 
-First, ensure Python is installed on your system. You can follow this installation guide based on your operating system:
+Ensure that Python is installed on your system. Follow the appropriate installation guide:
 
 - [Python Installation Guide](https://docs.python-guide.org/starting/install3/linux/)
 
-To verify the installation, run:
+Verify the installation by running:
 
 ```bash
 python3 --version
 ```
 
-#### 2. Set Up a Python Virtual Environment
+### 2. Set Up a Python Virtual Environment
 
-To avoid dependency conflicts, create a Python virtual environment for this project:
+To prevent dependency conflicts, create a Python virtual environment:
 
 ```bash
 python3 -m venv educational_assistant_env
@@ -53,52 +54,52 @@ source educational_assistant_env/bin/activate  # For Linux/Mac
 .\educational_assistant_env\Scripts\activate   # For Windows
 ```
 
-#### 3. Install and Configure AWS CLI
+### 3. Install and Configure AWS CLI
 
-You’ll need AWS CLI to authenticate and interact with Amazon Bedrock. Install AWS CLI following this guide:
+You will need the AWS CLI to authenticate and interact with Amazon Bedrock. Follow this guide to install AWS CLI:
 
 - [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
-After installation, configure it using:
+After installation, configure the AWS CLI by running:
 
 ```bash
 aws configure
 ```
 
-Make sure you set the AWS region to one that supports Bedrock, such as `us-west-2`.
+Ensure you use a region that supports Amazon Bedrock (e.g., `us-west-2`).
 
-#### 4. Clone the AWS Educational Assistant Repository
+### 4. Clone the AWS Educational Assistant Repository
 
-Now, clone the project from GitHub:
+Clone this project repository from GitHub:
 
 ```bash
-git clone https://github.com/
-cd AWS-Educational-Assistant
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
+cd AWS-First-GenAI-Journey
 ```
 
-#### 5. Install Project Dependencies
+### 5. Install Project Dependencies
 
-Install all required Python packages by using the `requirements.txt` file:
+Install the required Python packages by running:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-This installs necessary libraries like `streamlit`, `boto3`, `langchain`, and others.
+This installs necessary libraries like `streamlit`, `boto3`, `langchain`, and more.
 
-#### 6. Run the Streamlit Application
+### 6. Run the Streamlit Application
 
-To start the application, run:
+Launch the Streamlit application:
 
 ```bash
 streamlit run Home.py --server.port 8080
 ```
 
-The application will run on port `8080`. You can access it via your browser at `http://localhost:8080`.
+The application will run on port `8080`. You can access it by opening `http://localhost:8080` in your web browser.
 
 ---
 
-### Additional Resources
+## Additional Resources
 
 - **Amazon Bedrock Documentation**:
   - [Amazon Bedrock](https://aws.amazon.com/bedrock/)
@@ -109,4 +110,3 @@ The application will run on port `8080`. You can access it via your browser at `
 - **Claude 3 Model Card**:
   - [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
 
-This guide serves as a foundation to get the **AWS Educational Assistant** up and running, demonstrating the powerful combination of Amazon Bedrock, Claude 3, Langchain, and Streamlit.
