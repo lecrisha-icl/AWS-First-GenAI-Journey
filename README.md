@@ -1,8 +1,8 @@
-## AWS-First-GenAI-Journey
+# AWS-First-GenAI-Journey
 
 ### **1. AWS-AI-Powered Translation Assistant**
 **Description:**  
-An AI-powered translation assistant that leverages Amazon Bedrock's large language models (LLMs) to provide real-time, accurate translations across multiple languages.
+An AI-powered translation assistant leveraging Amazon Bedrock's large language models (LLMs) to provide real-time, accurate translations across multiple languages.
 
 **Key Components:**
 - **Amazon Bedrock** for NLP and language translation.
@@ -13,14 +13,14 @@ An AI-powered translation assistant that leverages Amazon Bedrock's large langua
 Input text in any language, and the assistant will instantly translate it into the target language, providing both literal and context-aware translations.
 
 **Setup:**
-- Deploy Amazon Bedrock with a translation-capable large language model.
+- Deploy Amazon Bedrock with a translation-capable LLM.
 - Integrate with a Streamlit frontend for interaction.
 
 ---
 
 ### **2. AWS Educational Assistant**
 **Description:**  
-An AI-powered educational assistant designed to help students and educators. It provides answers to academic questions, assists in study plans, and generates personalized learning content based on curriculum or topic input.
+An AI-powered educational assistant designed to help students and educators. It provides answers to academic questions, assists with study plans, and generates personalized learning content based on curriculum or topic input.
 
 **Key Components:**
 - **Amazon Bedrock** for NLP and text generation.
@@ -28,7 +28,7 @@ An AI-powered educational assistant designed to help students and educators. It 
 - **Frontend:** Built using Streamlit to deliver an interactive interface.
 
 **Use Case:**  
-Ask a question or topic, and the AI assistant will provide summaries, explanations, or study plans.
+Ask a question or specify a topic, and the AI assistant will provide summaries, explanations, or study plans.
 
 **Setup:**
 - Deploy Amazon Bedrock with a large language model like Claude.
@@ -38,7 +38,7 @@ Ask a question or topic, and the AI assistant will provide summaries, explanatio
 
 ### **3. AWS GenAI Market Sage**
 **Description:**  
-An intelligent financial market assistant that provides insights into stocks, crypto, or other market data. It uses real-time data feeds and generates insights, forecasts, or investment suggestions.
+An intelligent financial market assistant that provides insights into stocks, crypto, or other market data. It uses real-time data feeds to generate insights, forecasts, and investment suggestions.
 
 **Key Components:**
 - **Amazon Bedrock** for NLP and financial forecasting.
@@ -56,7 +56,7 @@ Input a stock symbol, and the assistant will analyze trends and provide insights
 
 ### **4. AWS Stock Agent with Bedrock**
 **Description:**  
-A real-time stock agent providing up-to-date market analyses, stock suggestions, and reports, built using Amazon Bedrock and a financial LLM for insights.
+A real-time stock agent that provides up-to-date market analyses, stock suggestions, and reports, built using Amazon Bedrock and a financial LLM for insights.
 
 **Key Components:**
 - **Amazon Bedrock** for NLP and stock trend analysis.
