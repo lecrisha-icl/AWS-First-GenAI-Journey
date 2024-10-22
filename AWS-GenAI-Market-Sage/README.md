@@ -1,93 +1,84 @@
+# AWS First GenAI Journey - Stock-Assistant
+
 ## Technical Guide: Stock-Assistant with Amazon Bedrock and Claude 3 Sonnet Model
 
-### Overview: Stock-Assistant
-The **Stock-Assistant** demo leverages **Amazon Bedrock** and **Anthropic's Claude 3 Sonnet Model** using **Langchain** and **Streamlit**. This project demonstrates how to integrate and deploy an AI-driven assistant that interacts with stock-related data.
+### Overview
+The **Stock-Assistant** demo leverages **Amazon Bedrock** and **Anthropic's Claude 3 Sonnet Model** using **Langchain** and **Streamlit**. This project demonstrates how to build and deploy an AI-driven assistant capable of interacting with stock-related data and assisting users in querying relevant information.
 
-For more details, please refer to the official documentation:
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Claude 3](https://www.anthropic.com/news/claude-3-family)
+For detailed documentation, visit:
+- [Amazon Bedrock Overview](https://aws.amazon.com/bedrock/)
+- [Claude 3 Overview](https://www.anthropic.com/news/claude-3-family)
+
+---
 
 ### Setup Instructions
 
 #### 1. Install Python
-Follow the official guide to set up Python for your environment:
-- [Python Installation Guide](https://docs.python-guide.org/starting/install3/linux/)
+Ensure Python is installed. Refer to the [official installation guide](https://docs.python-guide.org/starting/install3/linux/).
 
 #### 2. Set Up a Python Virtual Environment
-Create a Python virtual environment to isolate the project dependencies:
-- [Setting Up a Python Environment](https://docs.python-guide.org/starting/install3/linux/)
+To avoid dependency issues, create a virtual environment:
+```bash
+# Install virtualenv if needed
+pip install virtualenv
+
+# Create a virtual environment
+virtualenv venv
+
+# Activate the virtual environment (Linux/Mac)
+source venv/bin/activate
+
+# (Windows)
+venv\Scripts\activate
+```
 
 #### 3. Install AWS CLI
-To interact with AWS services like Amazon Bedrock, install and configure AWS CLI:
-- [AWS CLI Quickstart Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
+To configure and access AWS services (Amazon Bedrock), install the AWS CLI:
+- [AWS CLI Quickstart](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
 
-#### 4. Clone and Run the Stock-Assistant
+After installation, configure it with your AWS credentials:
+```bash
+aws configure
+```
 
+#### 4. Clone the Repository and Run the Application
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/stock-assistant.git
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
 
-# Pull the latest changes
-git pull
+# Change into the directory
+cd AWS-First-GenAI-Journey/stock-assistant
 
-# Change to the project directory
-cd stock-assistant
+# Install required dependencies
+pip install -r requirements.txt
 
-# Install all dependencies from the requirements file
-pip3 install -r requirements.txt
-
-# Run the application using Streamlit
+# Run the app using Streamlit
 streamlit run Home.py --server.port 8501
 ```
 
-You can access the running app via your web browser at `http://localhost:8501`.
+Access the app at `http://localhost:8501`.
 
 ---
 
 ### Architecture
 
-The Stock-Assistant is built on a modular architecture that incorporates the following components:
-- **Amazon Bedrock** as the foundational model-serving platform.
-- **Claude 3 Sonnet** from Anthropic for natural language processing.
-- **Langchain** for seamless AI and application integration.
-- **Streamlit** for the user-friendly interface.
+The Stock-Assistant is designed with modular components, focusing on scalability and ease of integration:
+- **Amazon Bedrock**: AI model hosting and inference service.
+- **Claude 3 Sonnet**: NLP model from Anthropic for interacting with users.
+- **Langchain**: Framework for integrating AI models into applications.
+- **Streamlit**: Frontend framework for creating interactive web applications.
 
 ![Architecture](./architecture.png)
 
 ---
 
 ### Learn More About Prompts and Claude 3
-
-- [Introduction to Prompt Design](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
+For more insights on prompt design and the Claude 3 model:
+- [Prompt Design Guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
 - [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
 
 ---
 
-### Docker Setup
-
-If you prefer running the application using Docker, follow these steps:
-
-```bash
-# Pull the latest changes from the repository
-git pull
-
-# Use Docker Compose to start the application in detached mode
-docker compose up -d
-```
-
----
-
-### Environment Configuration
-
-Create a `.env` file in the project root to store environment variables required for AWS access:
-
-```
-AWS_DEFAULT_REGION=us-east-1
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-```
-
-Make sure to replace `your_access_key` and `your_secret_key` with your actual AWS credentials. This ensures proper authentication with Amazon Bedrock and other AWS services.
-
----
+### Contributing
+We welcome contributions! Please submit your pull requests to the [AWS First GenAI Journey repo](https://github.com/aws-samples/AWS-First-GenAI-Journey).
 
