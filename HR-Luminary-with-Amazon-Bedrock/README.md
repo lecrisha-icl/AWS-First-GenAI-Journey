@@ -1,94 +1,86 @@
-
 # HR Luminary
 
 ## Overview
-**HR Luminary** is an AI-powered recruitment assistant designed to streamline and enhance the recruitment process. This project utilizes Amazon Bedrock and the Anthropic Claude model, integrated with the LangChain library, to provide advanced capabilities in candidate evaluation, resume screening, and interview assistance. HR Luminary is a demonstration of how AI can be leveraged to improve efficiency and decision-making in human resources.
+**HR Luminary** is an AI-powered recruitment assistant that enhances and streamlines the recruitment process. Built with Amazon Bedrock and Anthropic Claude models, integrated via LangChain, this project delivers capabilities like advanced resume screening, candidate evaluation, and interview assistance. The goal is to demonstrate how AI can improve HR decision-making and efficiency.
 
-For more information about the underlying technologies, please refer to:
+For details on the underlying technologies, visit:
 - [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Anthropic Claude 3](https://www.anthropic.com/index/claude-2)
+- [Anthropic Claude](https://www.anthropic.com/index/claude-2)
 
 ## Setup Guide
 
 ### Prerequisites
-Before setting up HR Luminary, ensure you have the following:
-- **Python** installed on your system. If not, follow the instructions [here](https://docs.python-guide.org/starting/install3/linux/).
-- **AWS CLI** installed and configured. Follow the quickstart guide [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html).
-- An **AWS account** to access Amazon Bedrock services.
+Ensure you have the following before setting up:
+- **Python** installed ([Installation Guide](https://docs.python-guide.org/starting/install3/linux/)).
+- **AWS CLI** installed and configured ([Quickstart Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)).
+- An **AWS Account** with Amazon Bedrock access.
 
-### Step 1: Set up a Python Virtual Environment
-Creating a virtual environment helps manage dependencies and avoid conflicts.
+### Step 1: Python Virtual Environment Setup
+Create and activate a Python virtual environment to manage dependencies.
 
-1. Open your terminal.
-2. Run the following commands to create and activate a virtual environment:
+1. Run the following commands:
    ```bash
    python3 -m venv hr-luminary-env
    source hr-luminary-env/bin/activate
    ```
 
 ### Step 2: Clone the Repository
-Clone the HR Luminary repository to your local machine.
+Clone the HR Luminary repository.
 
-1. Run the following commands:
-   ```bash
-   git clone https://github.com/awsstudygroup/HR-GenAI
-   cd HR-GenAI
-   ```
+```bash
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
+cd AWS-First-GenAI-Journey
+```
 
 ### Step 3: Install Dependencies
-Install the necessary Python packages listed in the `requirements.txt` file.
+Install all required dependencies using `requirements.txt`.
 
-1. Ensure your virtual environment is activated.
-2. Run the following command:
-   ```bash
-   pip3 install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-### Step 4: Configure AWS Credentials
-Ensure your AWS CLI is configured with the necessary credentials to access Amazon Bedrock.
+### Step 4: AWS CLI Configuration
+Ensure AWS CLI is configured with valid credentials.
 
-1. Run:
-   ```bash
-   aws configure
-   ```
-2. Enter your AWS Access Key, Secret Key, Region, and Output format.
+```bash
+aws configure
+```
+Input your AWS Access Key, Secret Key, Region (`us-west-2` recommended), and Output format.
 
-### Step 5: Run the Application
-Start the HR Luminary application using Streamlit.
+### Step 5: Running the Application
+Start the Streamlit application to interact with HR Luminary.
 
-1. Run the following command:
-   ```bash
-   streamlit run Home.py --server.port 8080
-   ```
-2. Open your browser and navigate to `http://localhost:8080` to interact with the application.
+```bash
+streamlit run Home.py --server.port 8080
+```
+Access the app by navigating to `http://localhost:8080` in your browser.
 
 ## Architecture
-The architecture of HR Luminary is designed to seamlessly integrate AI models with a user-friendly interface, enabling effective recruitment management. Below is an overview of the architecture:
+HR Luminary's architecture integrates AI models with a user-friendly interface for effective recruitment workflows.
 
 ![Architecture](./Architecture.png)
 
 ## Learn More About Prompt Design
-- Enhance the efficiency of AI models in HR Luminary by learning about prompt design [here](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design).
+To enhance the model's efficiency, learn about prompt design [here](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design).
 
 ## Contributing
-We welcome contributions to HR Luminary! To contribute:
+We welcome contributions! Here's how to get started:
 
-1. **Fork the Repository**: Create a copy of the repository in your GitHub account.
-2. **Create a New Branch**: Use a descriptive name for your branch:
+1. **Fork the Repository** on GitHub.
+2. **Create a Branch** for your feature or fix:
    ```bash
-   git checkout -b feature-or-bugfix-name
+   git checkout -b feature-name
    ```
-3. **Make Changes**: Commit your changes with clear messages:
+3. **Make Your Changes**, then commit:
    ```bash
    git add .
-   git commit -m "Description of your changes"
+   git commit -m "Brief description of changes"
    ```
-4. **Push Changes**: Push to your forked repository:
+4. **Push to Your Branch**:
    ```bash
-   git push origin feature-or-bugfix-name
+   git push origin feature-name
    ```
-5. **Open a Pull Request**: Provide a detailed description of your changes when opening a pull request.
+5. **Submit a Pull Request** with details on your changes.
 
 ## License
-HR Luminary is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
-
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
