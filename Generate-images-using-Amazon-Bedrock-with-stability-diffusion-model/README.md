@@ -1,7 +1,3 @@
-To enhance your guide with the requested images and videos, here’s a refined version with placeholders for embedding the media:
-
----
-
 ### Step-by-Step Guide for AWS Bedrock Image Generator
 
 The following guide will help you set up, run, and use the **AWS Bedrock Image Generator** project from the repository. This project enables you to generate images using AWS Bedrock’s Stable Diffusion models with a simple and user-friendly Streamlit interface.
@@ -135,3 +131,94 @@ This project is a simple yet powerful way to leverage AWS Bedrock's Stable Diffu
 
 Happy image generating!
 
+# AWS First Generative AI Journey
+
+Welcome to the **AWS First GenAI Journey** repository! This project is designed to help you embark on your journey of building and deploying generative AI models using AWS services like **Amazon Bedrock**. You will learn to utilize cutting-edge generative AI technologies such as **Stable Diffusion**, **Claude 3**, and more, integrated within a user-friendly environment.
+
+## Project Overview
+
+This repository contains a collection of use cases, applications, and example code that demonstrate how to build and deploy generative AI solutions on AWS. The primary focus is on enabling developers to utilize AWS services like Amazon Bedrock to interact with models such as **Stable Diffusion**, for generating images, and **Anthropic Claude**, for text-based applications.
+
+### Key Features
+
+- **Image Generation**: Use Amazon Bedrock's Stable Diffusion models to generate high-quality images.
+- **Text Generation**: Leverage models like Claude 3 for advanced text generation.
+- **Streamlit Integration**: A simple, user-friendly UI for interacting with the models.
+- **AWS Native Services**: Built entirely on AWS for scalability, security, and performance.
+
+## Prerequisites
+
+- AWS Account with access to **Amazon Bedrock**.
+- AWS CLI installed and configured.
+- Python 3.7+ installed.
+- Familiarity with services like **Amazon S3**, **IAM**, and **Lambda** is a plus.
+
+## Getting Started
+
+### 1. Clone the Repository
+
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
+cd AWS-First-GenAI-Journey
+```
+
+### 2. Install Dependencies
+
+Make sure all the required Python dependencies are installed by running:
+
+```bash
+pip install -r requirements.txt
+```
+
+This will install libraries such as `boto3`, `Streamlit`, `Pillow`, and others necessary for the project.
+
+### 3. Configure AWS Credentials
+
+You need to configure your AWS credentials to allow the application to interact with AWS services. Use the AWS CLI to configure your access keys:
+
+```bash
+aws configure
+```
+
+Set the default region to `us-west-2` as Amazon Bedrock is currently available in that region.
+
+### 4. Running the Application
+
+To run the image generation application with a Streamlit UI, execute:
+
+```bash
+streamlit run app.py
+```
+
+This will launch the Streamlit web interface where you can interact with the model, enter prompts, and generate images.
+
+### 5. Using the Application
+
+- **Enter a prompt**: Describe what you want the model to generate (e.g., `A futuristic cityscape at night with neon lights`).
+- **Select Options**: Choose options like image orientation, steps for diffusion, and seed values.
+- **Generate**: Click the `Generate Image` button and wait for the image to appear.
+
+## Structure of the Repository
+
+- `app.py`: The main Streamlit application for generating images using Amazon Bedrock.
+- `requirements.txt`: Python dependencies for the project.
+- `utils/`: Utility scripts to facilitate interactions with AWS services.
+- `docs/`: Documentation and guides to help you understand the codebase and services.
+
+## Customization
+
+You can modify the prompts, change model parameters, or even extend the app to handle additional generative tasks. Dive into the `app.py` file to add new features and experiment with different configurations.
+
+## Contributing
+
+We welcome contributions! Please feel free to submit pull requests or open issues if you have suggestions for improvements.
+
+## License
+
+This project is licensed under the [Apache 2.0 License](LICENSE).
+
+---
+
+Happy Generating!
