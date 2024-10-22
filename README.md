@@ -157,8 +157,6 @@ Upload customer reviews or feedback, and TapVision will provide sentiment analys
 - Implement Amazon Bedrock for NLP.
 - Create a business analytics dashboard for displaying insights from customer data.
 
----
-
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
