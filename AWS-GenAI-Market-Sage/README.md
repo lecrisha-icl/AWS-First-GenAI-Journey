@@ -3,6 +3,7 @@
 ## Technical Guide: Stock-Assistant with Amazon Bedrock and Claude 3 Sonnet Model
 
 ### Overview
+
 The **Stock-Assistant** demo leverages **Amazon Bedrock** and **Anthropic's Claude 3 Sonnet Model** using **Langchain** and **Streamlit**. This project demonstrates how to build and deploy an AI-driven assistant capable of interacting with stock-related data and assisting users in querying relevant information.
 
 For detailed documentation, visit:
@@ -73,6 +74,7 @@ The Stock-Assistant is designed with modular components, focusing on scalability
 ---
 
 ### Learn More About Prompts and Claude 3
+
 For more insights on prompt design and the Claude 3 model:
 - [Prompt Design Guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
 - [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
@@ -80,5 +82,5 @@ For more insights on prompt design and the Claude 3 model:
 ---
 
 ### Contributing
-We welcome contributions! Please submit your pull requests to the [AWS First GenAI Journey repo](https://github.com/aws-samples/AWS-First-GenAI-Journey).
 
+We welcome contributions! Please submit your pull requests to the [AWS First GenAI Journey repo](https://github.com/aws-samples/AWS-First-GenAI-Journey).

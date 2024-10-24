@@ -1,163 +1,266 @@
 import streamlit as st
 import Libs as glib
 
-st.set_page_config(page_title="Educational Content Generator", layout="wide", initial_sidebar_state="expanded")
+# Page configuration with custom theme
+st.set_page_config(
+    page_title="Educational Content Generator",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.education.com/',
+        'Report a bug': 'https://github.com/your-repo',
+        'About': 'Educational Content Generator v1.0'
+    }
+)
 
-# Custom CSS for full-screen UI design
+# Enhanced CSS with modern design elements
 st.markdown("""
     <style>
-    body {
-        background-color: #FFFFFF; /* Background trắng */
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
+    /* Main container styles */
     .main {
-        background-color: #FFFFFF; /* Nền trắng cho phần chính */
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #FFFFFF;
+        padding: 2rem;
+        max-width: 1200px;
         margin: 0 auto;
-        width: 100vw;
-        height: 100vh;
-        overflow-y: auto;
     }
-    .stButton > button {
-        background-color: #6A9CFD; /* Màu xanh dương nhạt */
-        color: white;
-        border: none;
-        padding: 12px 24px;
+    
+    /* Header styles */
+    .main h1 {
+        color: #1E3A8A;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
         text-align: center;
-        font-size: 16px;
-        margin: 10px;
-        transition-duration: 0.4s;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid #3B82F6;
+    }
+    
+    .main h2 {
+        color: #2563EB;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Input field styles */
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea {
+        background-color: #F3F4F6;
+        border: 2px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+    
+    /* Select box styles */
+    .stSelectbox > div > div > select {
+        background-color: #F3F4F6;
+        border: 2px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 0.75rem;
+        font-size: 1rem;
         cursor: pointer;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Button styles */
+    .stButton > button {
         width: 100%;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        margin: 0.5rem 0;
     }
-    .stButton > button:hover {
-        background-color: #AEE4FF; /* Màu xanh dương nhạt hơn khi hover */
+    
+    .stButton > button:first-child {
+        background-color: #2563EB;
+        color: white;
     }
-    .stTextInput textarea, .stTextInput input {
-        border-radius: 10px;
-        padding: 12px;
-        border: 1px solid #ccc;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        margin-bottom: 20px;
+    
+    .stButton > button:first-child:hover {
+        background-color: #1D4ED8;
+        box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
     }
-    .stTextInput {
-        margin-bottom: 20px;
+    
+    .stButton > button:last-child {
+        background-color: #EF4444;
+        color: white;
     }
-    .stMarkdown p {
-        font-size: 1.1rem;
+    
+    .stButton > button:last-child:hover {
+        background-color: #DC2626;
+        box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
     }
-    .stSelectbox {
-        margin-bottom: 20px;
-        width: 100%;
+    
+    /* Sidebar styles */
+    .css-1d391kg {
+        background-color: #F8FAFC;
+        padding: 2rem 1rem;
     }
-    .sidebar .sidebar-content {
-        padding: 20px;
-        background-color: #FFBFB3; /* Màu cam nhạt cho sidebar */
-        border-radius: 10px;
+    
+    .css-1d391kg .block-container {
+        padding: 2rem 1rem;
     }
-    .columns {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
+    
+    /* Output container styles */
+    .output-container {
+        background-color: #F9FAFB;
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 2rem;
+        border: 1px solid #E5E7EB;
     }
-    .columns > div {
-        flex: 1;
+    
+    /* Loading spinner styles */
+    .stSpinner > div {
+        border-color: #3B82F6;
+    }
+    
+    /* Alert styles */
+    .stAlert {
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+    
+    /* Link styles */
+    a {
+        color: #2563EB;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    a:hover {
+        color: #1D4ED8;
+        text-decoration: underline;
     }
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
-st.title("Educational Content Generator")
-st.subheader("Create Custom Educational Content")
-
-# Initialize session state variables if not present
+# Initialize session state
 if "clear_topic" not in st.session_state:
-    st.session_state["clear_topic"] = ""
+    st.session_state.clear_topic = ""
 if "clear_subject" not in st.session_state:
-    st.session_state["clear_subject"] = ""
+    st.session_state.clear_subject = ""
 if "clear_audience" not in st.session_state:
-    st.session_state["clear_audience"] = "High School Students"
+    st.session_state.clear_audience = "High School Students"
+if "generated_content" not in st.session_state:
+    st.session_state.generated_content = ""
 
-# Input fields for educational content generation
-input_topic = st.text_input("Enter the topic for the lesson", value=st.session_state["clear_topic"])
-subject_area = st.text_input("Enter the subject area", value=st.session_state["clear_subject"])
-audience_level = st.selectbox("Select the target audience level", ["High School Students", "College Students", "Professionals"], index=["High School Students", "College Students", "Professionals"].index(st.session_state["clear_audience"]))
+# Main content area
+st.title("Educational Content Generator")
+st.subheader("Create Professional Learning Materials in Seconds")
 
-# Action buttons in a single row
-col1, col2 = st.columns([1, 1])
+# Create two columns for the main content
+left_col, right_col = st.columns([2, 1])
 
-with col1:
-    if st.button("Generate Content"):
-        if input_topic and subject_area and audience_level:
-            with st.spinner("Generating educational content..."):
-                # Create the formatted prompt
-                prompt_template = (
-                    "You are an expert educator with deep knowledge in {subject_area}. "
-                    "Your task is to create an engaging and informative lesson on the topic of '{input_topic}'. "
-                    "The content should be suitable for {audience_level}, and it should include the following elements:\n\n"
-                    "1. **Introduction**: Start with an introduction that explains the importance of the topic and how it relates to the broader subject area.\n\n"
-                    "2. **Key Concepts**: Clearly define and explain the key concepts, theories, or principles related to the topic. Use simple language and examples to ensure understanding.\n\n"
-                    "3. **Practical Applications**: Describe how these concepts can be applied in real-world scenarios. Provide at least two examples or case studies.\n\n"
-                    "4. **Common Misconceptions**: Identify any common misconceptions about the topic and provide clarifications to correct these misunderstandings.\n\n"
-                    "5. **Summary**: End with a summary that recaps the main points covered in the lesson, highlighting the most important takeaways.\n\n"
-                    "6. **Further Reading**: Suggest additional resources or readings for students who want to explore the topic in more depth.\n\n"
-                    "Please write the content in a clear, concise, and engaging manner, suitable for the specified audience. Ensure that the information is accurate and up-to-date.\n\n"
-                    "Here is the topic for the lesson:\n"
-                    "{input_topic}\n\n"
-                    "You may begin your lesson."
-                )
-                formatted_prompt = prompt_template.format(
-                    subject_area=subject_area,
-                    input_topic=input_topic,
-                    audience_level=audience_level
-                )
+with left_col:
+    # Input form
+    with st.form(key="content_form"):
+        input_topic = st.text_input(
+            "Topic",
+            value=st.session_state.clear_topic,
+            placeholder="Enter the main topic for your lesson",
+            help="Be specific about what you want to teach"
+        )
+        
+        subject_area = st.text_input(
+            "Subject Area",
+            value=st.session_state.clear_subject,
+            placeholder="E.g., Mathematics, Science, History",
+            help="The broader subject category"
+        )
+        
+        audience_level = st.selectbox(
+            "Target Audience",
+            ["High School Students", "College Students", "Professionals"],
+            index=["High School Students", "College Students", "Professionals"].index(st.session_state.clear_audience),
+            help="Select your target audience to adjust content complexity"
+        )
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            submit_button = st.form_submit_button("Generate Content", use_container_width=True)
+        with col2:
+            clear_button = st.form_submit_button("Clear Form", use_container_width=True)
+
+        if submit_button:
+            if input_topic and subject_area and audience_level:
+                with st.spinner("Creating your educational content..."):
+                    prompt_template = f"""
+                    As an expert educator in {subject_area}, create an engaging lesson on '{input_topic}' for {audience_level}.
+                    Include:
+                    
+                    1. Introduction
+                    2. Key Concepts
+                    3. Practical Applications
+                    4. Common Misconceptions
+                    5. Summary
+                    6. Further Reading
+                    
+                    Make the content engaging, accurate, and appropriate for the audience level.
+                    """
+                    
+                    response_text = ""
+                    for chunk in glib.call_claude_sonet_stream(prompt_template):
+                        if chunk:
+                            response_text += chunk
+                    
+                    st.session_state.generated_content = response_text
+                    st.success("✨ Content generated successfully!")
+            else:
+                st.error("Please fill out all fields before generating content.")
                 
-                response_text = ""
-                # Call the generator function with the formatted prompt
-                for response_chunk in glib.call_claude_sonet_stream(formatted_prompt):
-                    if response_chunk:  # Check if response_chunk is not None
-                        response_text += response_chunk
-                
-                st.markdown(response_text)  # Display the combined response as markdown
+        if clear_button:
+            st.session_state.clear_topic = ""
+            st.session_state.clear_subject = ""
+            st.session_state.clear_audience = "High School Students"
+            st.session_state.generated_content = ""
+            st.experimental_rerun()
 
-            st.success("Content generation complete.")
-        else:
-            st.warning("Please fill out all fields before submitting.")
+# Display generated content
+if st.session_state.generated_content:
+    st.markdown("### Generated Content")
+    with st.container():
+        st.markdown(st.session_state.generated_content)
 
-with col2:
-    if st.button("Clear"):
-        st.session_state["clear_topic"] = ""
-        st.session_state["clear_subject"] = ""
-        st.session_state["clear_audience"] = "High School Students"
-        st.experimental_rerun()
-
-# Sidebar with info and user guide
-st.sidebar.title("Educational Content Generator")
-st.sidebar.info("""
-    **How to Use:**
-    1. Enter the topic for the lesson.
-    2. Specify the subject area.
-    3. Choose the target audience level.
-    4. Click 'Generate Content' to receive a custom lesson plan.
-    5. If needed, click 'Clear' to reset the inputs.
-""")
-
-# Sidebar with additional resources
-st.sidebar.markdown("### Additional Resources")
-st.sidebar.markdown("""
-    - [Educational Resources](https://www.education.com/)
-    - [Teaching Strategies](https://www.edutopia.org/)
-    - [Lesson Plan Ideas](https://www.lessonplans.com/)
-""")
-
-st.sidebar.markdown("### About This Tool")
-st.sidebar.markdown("""
-    This tool helps educators create customized lesson plans based on specific topics and audience levels. 
-    It's designed to save time and ensure content is tailored to students' needs.
-""")
+# Sidebar content
+with st.sidebar:
+    st.image("https://via.placeholder.com/150", caption="Educational Content Generator")
+    
+    st.markdown("### How to Use")
+    st.info("""
+    1. Enter your lesson topic
+    2. Select the subject area
+    3. Choose your target audience
+    4. Click 'Generate Content'
+    5. Review and customize the output
+    """)
+    
+    st.markdown("### Tips for Best Results")
+    st.success("""
+    - Be specific with your topic
+    - Consider your audience level
+    - Review and adapt content as needed
+    - Save generated content for future use
+    """)
+    
+    st.markdown("### Additional Resources")
+    resources = {
+        "📚 Teaching Strategies": "https://www.edutopia.org/",
+        "🎯 Lesson Planning": "https://www.lessonplans.com/",
+        "📝 Educational Research": "https://www.education.com/"
+    }
+    
+    for resource, link in resources.items():
+        st.markdown(f"[{resource}]({link})")
+    
+    st.markdown("---")
+    st.caption("© 2024 Educational Content Generator")

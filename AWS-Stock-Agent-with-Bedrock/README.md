@@ -28,7 +28,6 @@ Ensure Python 3 is installed in your system. Follow the official guide for setup
 
 ### 2. Create a Python Virtual Environment
 It's recommended to isolate dependencies by setting up a virtual environment.
-
 ```bash
 # Install virtualenv if not installed
 pip install virtualenv
@@ -44,7 +43,6 @@ venv\Scripts\activate      # For Windows
 
 ### 3. Install AWS CLI
 To interact with Amazon Bedrock, install the AWS Command Line Interface (CLI):
-
 ```bash
 # Install AWS CLI (for Linux/macOS)
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
@@ -53,10 +51,10 @@ sudo installer -pkg AWSCLIV2.pkg -target /
 # Configure AWS CLI
 aws configure
 ```
+
 Refer to the [AWS CLI Quickstart Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html) for more details.
 
 ### 4. Clone and Run the Stock-Assistant Application
-
 ```bash
 # Clone the repository
 git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
@@ -91,7 +89,5 @@ The Stock-Assistant uses a layered architecture designed for flexibility and sca
 
 ### Prompts and AI Model
 Explore how to design prompts for effective interaction with **Claude 3** and learn more about the capabilities of the model:
-
 - [Introduction to Prompt Design](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
 - [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
-

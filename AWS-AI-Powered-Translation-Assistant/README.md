@@ -1,147 +1,124 @@
-# **Technical Guide for AWS-AI-Powered-Translation-Assistant**
+# AWS AI-Powered Translation Assistant
 
-## **Introduction**
+A proof-of-concept translation application leveraging Amazon Bedrock and Generative AI to provide real-time translation capabilities through multiple interfaces.
 
-This guide provides a step-by-step walkthrough for setting up and using the **AWS-AI-Powered-Translation-Assistant**. The application leverages **Amazon Bedrock** and **Generative AI** for text translation across multiple languages, providing three user interfaces: text input, chat, and file-based translations.
+## Features
 
-## **Goal**
+- **Text Translation**: Translate text with accuracy and fluency feedback
+- **Chat Translation**: Real-time translation for conversational interactions
+- **File Translation**: Upload and translate entire text files
+- **Multiple Language Support**: Translate between various language pairs
+- **Powered by Amazon Bedrock**: Utilizes state-of-the-art AI models for accurate translations
 
-The goal is to create a translation **Proof of Concept (POC)** using **Amazon Bedrock**. The web-based frontend enables users to translate text, chat in real-time, and upload files for translation.
+## Prerequisites
 
-## **System Architecture Overview**
+- Python 3.10
+- AWS CLI installed and configured
+- Access to Amazon Bedrock
+- Active AWS account with appropriate permissions
 
-The system is designed with three primary translation modes:
-1. **Text Input**: Translate text with feedback on accuracy and fluency.
-2. **Chat**: Provide real-time translation for conversational input.
-3. **File Upload**: Upload a text file and receive its translated version.
+## Quick Start
 
-Each interface interacts with **Amazon Bedrock** for translation, using **Streamlit** for the frontend.
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
+   cd AWS-First-GenAI-Journey
+   ```
 
----
+2. **Set Up Virtual Environment**
+   ```bash
+   pip install virtualenv
+   python3.10 -m venv venv
 
-## **How to Use This Repository**
+   # Activate virtual environment
+   # For Linux/MacOS:
+   source venv/bin/activate
+   # For Windows:
+   venv\Scripts\activate
+   ```
 
-### **Prerequisites**
-- **Amazon Bedrock**: Ensure access via AWS CLI, with credentials set up for interacting with Bedrock models.
-- **Python 3.10**: Install from [here](https://www.python.org/downloads/release/python-3100/).
-- **AWS CLI**: Installed and configured with access to Amazon Bedrock.
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### **Step 1: Clone the Repository**
+4. **Configure AWS Credentials**
+   Create a `.env` file in the root directory:
+   ```bash
+   profile_name=<AWS_CLI_PROFILE_NAME>
+   ```
 
-Clone the GitHub repository to your local environment:
+5. **Launch the Application**
+   ```bash
+   streamlit run Text.py
+   ```
 
-```bash
-git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
-cd AWS-First-GenAI-Journey
-```
+## Application Structure
 
-Key files include:
-- **Text.py, Chat.py, File.py**: Streamlit frontends for text, chat, and file translation.
-- **amazon_bedrock_translation.py**: Logic for interacting with Amazon Bedrock's AI models.
-- **requirements.txt**: Lists required dependencies.
+- `Text.py`: Text translation interface
+- `Chat.py`: Chat translation interface
+- `File.py`: File upload and translation interface
+- `amazon_bedrock_translation.py`: Core translation logic using Amazon Bedrock
+- `requirements.txt`: Project dependencies
 
----
+## Configuration
 
-### **Step 2: Set Up a Virtual Environment**
+### AWS Region
 
-Navigate to the repository folder and set up a virtual environment:
-
-```bash
-pip install virtualenv
-python3.10 -m venv venv
-```
-
-Activate the virtual environment:
-
-- For Linux/MacOS:
-  ```bash
-  source venv/bin/activate
-  ```
-- For Windows:
-  ```bash
-  venv\Scripts\activate
-  ```
-
-Install all necessary dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### **Step 3: Configure AWS Credentials and Region**
-
-Configure the AWS CLI to work with Amazon Bedrock by creating a `.env` file in the root directory. Add the following details:
-
-```bash
-profile_name=<AWS_CLI_PROFILE_NAME>
-```
-
-Ensure your AWS CLI profile is properly configured and has Bedrock access. If you want to specify a different AWS region, adjust the Bedrock client in `prompt_finder_and_invoke_llm.py`:
+The default AWS region is set to `us-east-1`. To modify the region, update the Bedrock client configuration in `prompt_finder_and_invoke_llm.py`:
 
 ```python
-bedrock = boto3.client('bedrock-runtime', 'us-east-1', endpoint_url='https://bedrock-runtime.us-east-1.amazonaws.com')
+bedrock = boto3.client(
+    'bedrock-runtime',
+    'us-east-1',
+    endpoint_url='https://bedrock-runtime.us-east-1.amazonaws.com'
+)
 ```
 
----
+### AI Model Selection
 
-### **Step 4: Customize Amazon Bedrock Models**
-
-The application uses **Claude 3** by default, but you can modify the `modelId` in `amazon_bedrock_translation.py` to use other models:
+The application uses Claude 3 by default. To use a different model, modify the `modelId` in `amazon_bedrock_translation.py`:
 
 ```python
-def llm_answer_generator(question_with_prompt):
-    prompt = "Translation prompt"
-    body = json.dumps({
-        "prompt": prompt,
-        "max_tokens_to_sample": 8191,
-        "temperature": 0,
-        "top_k": 250,
-        "top_p": 0.5,
-        "stop_sequences": []
-    })
-    modelId = 'anthropic.claude-v2'  # Change this to any other Bedrock-supported model
-    response = bedrock.invoke_model(body=body, modelId=modelId)
-    response_body = json.loads(response.get('body').read())
-    return response_body.get('completion')
+modelId = 'anthropic.claude-v2'  # Change to any Bedrock-supported model
 ```
 
-Adjust the `modelId` to any Bedrock-supported model based on your preference.
+## Usage
 
----
+### Text Translation
+1. Access the text translation interface
+2. Enter your text in the input field
+3. Select source and target languages
+4. View translation with accuracy metrics
 
-### **Step 5: Running the Application**
+### Chat Translation
+1. Open the chat interface
+2. Select your target language
+3. Start conversing to receive real-time translations
 
-Start the application using the following command:
+### File Translation
+1. Navigate to the file upload interface
+2. Upload your text file
+3. Select the target language
+4. Download the translated file
 
-```bash
-streamlit run Text.py
-```
+## Contributing
 
-This will launch the app in your browser, allowing you to test the text, chat, and file-based translation functionalities.
+We welcome contributions to improve the translation assistant. Please follow standard GitHub pull request procedures to submit your changes.
 
----
+## License
 
-## **Application Interfaces**
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-### **Text Input Interface**
-1. Enter the text to be translated.
-2. Select the source and target languages.
-3. View the translated text and receive feedback on accuracy and fluency.
+## Support
 
-### **Chat Interface**
-1. Input conversational text.
-2. Select the target language for real-time translation.
-3. Receive immediate translated responses.
+For issues and questions:
+- Create a GitHub issue
+- Contact AWS Support for Bedrock-related questions
+- Check AWS documentation for service-specific details
 
-### **File Upload Interface**
-1. Upload a text file for translation.
-2. Select the target language.
-3. Download or view the translated file contents.
+## Additional Resources
 
----
-
-## **Conclusion**
-
-This guide outlines the steps to set up and deploy the **AWS-AI-Powered-Translation-Assistant** using **Amazon Bedrock**. The application provides an interactive frontend for text, chat, and file translation, making it easy to extend or modify the POC. By following these steps, you can quickly spin up a working translation tool using AWS's powerful generative AI services.
+- [Amazon Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
+- [AWS CLI Configuration Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+- [Python Virtual Environment Guide](https://docs.python.org/3/library/venv.html)

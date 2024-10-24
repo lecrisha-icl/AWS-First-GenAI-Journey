@@ -153,17 +153,18 @@ particles_js = """<!DOCTYPE html>
 </body>
 </html>
 """
+
 welcome_messages = [
-    "Xin chào! Tôi là AWS First GenAI Journey, trợ lý AI. Bạn hãy hỏi tôi bất cứ điều gì!",
-    "Chào! Tôi là AWS First GenAI Journey, trợ lý AI giải thích dữ liệu First GenAI Journey. Tôi có thể giúp gì cho bạn?",
-    "Hey! Tôi là AWS First GenAI Journey, hướng dẫn viên AI về metadata hình ảnh. Bạn muốn khám phá gì?",
-    "Xin chào! Tôi là AWS First GenAI Journey, công cụ AI giúp bạn hiểu metadata hình ảnh. Tôi có thể giúp gì?",
-    "Chào bạn! Tôi là AWS First GenAI Journey, công cụ AI giải thích metadata hình ảnh. Bạn cần gì?",
-    "Chào! Tôi là AWS First GenAI Journey, trợ lý AI giúp hiểu dữ liệu First GenAI Journey dễ dàng. Tôi giúp được gì?",
-    "Chào mừng! Tôi là AWS First GenAI Journey, công cụ AI thông minh giải thích dữ liệu First GenAI Journey. Tôi có thể hỗ trợ gì?",
-    "Xin chào! Tôi là AWS First GenAI Journey, hướng dẫn viên AI về metadata hình ảnh. Hỏi tôi bất cứ điều gì!",
-    "Chào! Tôi là AWS First GenAI Journey, trợ lý AI thông minh giúp hiểu metadata hình ảnh. Bạn muốn khám phá gì?",
-    "Hey! Tôi là AWS First GenAI Journey, trợ lý AI giải thích dữ liệu AWS First GenAI Journey. Tôi có thể giúp gì hôm nay?",
+    "Hello! I'm AWS First GenAI Journey, an AI assistant. Ask me anything!",
+    "Hi! I'm AWS First GenAI Journey, an AI assistant explaining First GenAI Journey data. How can I help you?",
+    "Hey! I'm AWS First GenAI Journey, an AI guide for image metadata. What would you like to explore?",
+    "Hello! I'm AWS First GenAI Journey, an AI tool to help you understand image metadata. How can I assist?",
+    "Hi there! I'm AWS First GenAI Journey, an AI tool for explaining image metadata. What do you need?",
+    "Hi! I'm AWS First GenAI Journey, an AI assistant making First GenAI Journey data easy to understand. How can I help?",
+    "Welcome! I'm AWS First GenAI Journey, a smart AI tool explaining First GenAI Journey data. How can I support you?",
+    "Hello! I'm AWS First GenAI Journey, an AI guide for image metadata. Ask me anything!",
+    "Hi! I'm AWS First GenAI Journey, a smart AI assistant helping understand image metadata. What would you like to explore?",
+    "Hey! I'm AWS First GenAI Journey, an AI assistant explaining AWS First GenAI Journey data. How can I help today?",
 ]
 
 message = random.choice(welcome_messages)
@@ -176,107 +177,105 @@ system_prompt = """
     4. Asset Evaluation: When asked, use your knowledge to identify potential trading assets. Provide a detailed list with supporting data and rationale for each recommendation.
     5. Current Information: Ensure all advice and analysis is based on the most up-to-date market information available to you. If you need to access real-time data, inform the user and proceed to retrieve the latest information.
     6. Honesty: If you're unsure about something or don't have the necessary information, clearly state this. Do not provide speculative or potentially misleading information.
-    7. Language: Provide all responses in Vietnamese.
+    7. Language: Provide all responses in English.
     8. Adaptability: Tailor your responses to the specific needs and questions of each user, whether they're seeking general market insights or detailed analysis of particular stocks or strategies.
     9. Markdown Format: Provide all responses in Markdown format, highlighting key points using bold text.
     """
 
 def init_home_state(_message): 
-  if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": message}]
-  if "exif_df" not in st.session_state:
-      st.session_state["exif_df"] = pd.DataFrame()
-  if "url_exif_df" not in st.session_state:
-      st.session_state["url_exif_df"] = pd.DataFrame()
-  if "show_expanders" not in st.session_state:
-      st.session_state.show_expanders = True
-  if "reset_trigger" not in st.session_state:
-      st.session_state.reset_trigger = False
-  if "image_url" not in st.session_state:
-      st.session_state["image_url"] = ""
-  if "follow_up" not in st.session_state:
-      st.session_state.follow_up = False
-  if "show_animation" not in st.session_state:
-      st.session_state.show_animation = True
+    if "messages" not in st.session_state:
+        st.session_state["messages"] = [{"role": "assistant", "content": message}]
+    if "exif_df" not in st.session_state:
+        st.session_state["exif_df"] = pd.DataFrame()
+    if "url_exif_df" not in st.session_state:
+        st.session_state["url_exif_df"] = pd.DataFrame()
+    if "show_expanders" not in st.session_state:
+        st.session_state.show_expanders = True
+    if "reset_trigger" not in st.session_state:
+        st.session_state.reset_trigger = False
+    if "image_url" not in st.session_state:
+        st.session_state["image_url"] = ""
+    if "follow_up" not in st.session_state:
+        st.session_state.follow_up = False
+    if "show_animation" not in st.session_state:
+        st.session_state.show_animation = True
 
-
-def init_stock_advisor(): 
-  if "messages" not in st.session_state:
-      st.session_state["messages"] = [{"role": "assistant", "content": message}]
-  if 'generated' not in st.session_state:
-      st.session_state['generated'] = []
-  if 'past' not in st.session_state:
-      st.session_state['past'] = []
-  if 'model_name' not in st.session_state:
-      st.session_state['model_name'] = []
-  if 'cost' not in st.session_state:
-      st.session_state['cost'] = []
-  if 'total_tokens' not in st.session_state:
-      st.session_state['total_tokens'] = []
-  if 'total_cost' not in st.session_state:
-      st.session_state['total_cost'] = 0.0
+def init_stock_advisor():
+    if "messages" not in st.session_state:
+        st.session_state["messages"] = [{"role": "assistant", "content": message}]
+    if 'generated' not in st.session_state:
+        st.session_state['generated'] = []
+    if 'past' not in st.session_state:
+        st.session_state['past'] = []
+    if 'model_name' not in st.session_state:
+        st.session_state['model_name'] = []
+    if 'cost' not in st.session_state:
+        st.session_state['cost'] = []
+    if 'total_tokens' not in st.session_state:
+        st.session_state['total_tokens'] = []
+    if 'total_cost' not in st.session_state:
+        st.session_state['total_cost'] = 0.0
 
 def init_slidebar():
-  with st.sidebar:
-      image_url = (
-          "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
-      )
+    with st.sidebar:
+        image_url = (
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+        )
 
-      st.markdown(
-          f"""
-          <div style='display: flex; align-items: center;'>
-              <img src='{image_url}' style='height: 96px; padding: 10px; margin-right: 10px;'>
-              <h1 style='margin: 0;'>AWS First GenAI Journey</h1>
-          </div>
-          """,
-          unsafe_allow_html=True,
-      )
+        st.markdown(
+            f"""
+            <div style='display: flex; align-items: center;'>
+                <img src='{image_url}' style='height: 96px; padding: 10px; margin-right: 10px;'>
+                <h1 style='margin: 0;'>AWS First GenAI Journey</h1>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-      st.markdown(
-          """
-          <style>
-              [data-testid="stSidebarNav"]::before {
-                  content: "First GenAI Journey";
-                  margin-left: 20px;
-                  font-size: 20px;
-                  position: relative;
-              }
-          </style>
-          """,
-          unsafe_allow_html=True,
-      )
-      
-      st.sidebar.button(
-          "🗑 Xóa lịch sử chat",
-          on_click=clear_chat_history,
-          key="sidebar_clear_chat_history",
-      )
+        st.markdown(
+            """
+            <style>
+                [data-testid="stSidebarNav"]::before {
+                    content: "First GenAI Journey";
+                    margin-left: 20px;
+                    font-size: 20px;
+                    position: relative;
+                }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+        st.sidebar.button(
+            "🗑 Clear Chat History",
+            on_click=clear_chat_history,
+            key="sidebar_clear_chat_history",
+        )
 
 def init_animation():
-  if 'reset_trigger' not in st.session_state:
-    st.session_state.reset_trigger = False
-  if st.session_state.reset_trigger:
-      unique_key = "chat_input_" + str(hash("Snowflake Arctic is cool"))
-      st.session_state.show_animation = False
-      
-  if "has_snowed" not in st.session_state:
-      st.snow()
-      st.session_state["has_snowed"] = True
+    if 'reset_trigger' not in st.session_state:
+        st.session_state.reset_trigger = False
+    if st.session_state.reset_trigger:
+        unique_key = "chat_input_" + str(hash("Snowflake Arctic is cool"))
+        st.session_state.show_animation = False
+        
+    if "has_snowed" not in st.session_state:
+        st.snow()
+        st.session_state["has_snowed"] = True
 
-  if 'show_animation' not in st.session_state:
-    st.session_state.show_animation = False
+    if 'show_animation' not in st.session_state:
+        st.session_state.show_animation = False
 
-  if st.session_state.show_animation:
-      components.html(particles_js, height=370, scrolling=False)
+    if st.session_state.show_animation:
+        components.html(particles_js, height=370, scrolling=False)
 
 def init_dialog():
-  for message in st.session_state.messages:
-    with st.chat_message(message["role"], avatar=icons[message["role"]]):
-        st.write(message["content"])
-        if message == st.session_state["messages"][0]:
-            if st.button("Giới thiệu AWS First GenAI Journey?"):
-                show_video("https://www.youtube.com/watch?v=AQlsd0nWdZk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i")
-                
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"], avatar=icons[message["role"]]):
+            st.write(message["content"])
+            if message == st.session_state["messages"][0]:
+                if st.button("What is AWS First GenAI Journey?"):
+                    show_video("https://www.youtube.com/watch?v=AQlsd0nWdZk&list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i")
                 
 def right_message(st, message):
     st.markdown(
@@ -311,7 +310,6 @@ def clear_stock_advisor():
     st.session_state['cost'] = []
     st.session_state['total_cost'] = 0.0
     st.session_state['total_tokens'] = []
-    #counter_placeholder.write(f"Total cost of this conversation: $${st.session_state['total_cost']:.5f}")
 
 @st.experimental_dialog("How to use First GenAI Journey", width=1920)
 def show_video(video_url):
@@ -325,5 +323,3 @@ def get_num_tokens(prompt):
     tokenizer = get_tokenizer()
     tokens = tokenizer.tokenize(prompt)
     return len(tokens)
-
-

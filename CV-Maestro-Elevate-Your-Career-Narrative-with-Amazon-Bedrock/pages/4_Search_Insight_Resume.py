@@ -3,132 +3,226 @@ import recruitment_lib as glib
 from PyPDF2 import PdfReader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.callbacks import StreamlitCallbackHandler
+import time
 
-# Set up the page configuration
-st.set_page_config(page_title="Search Insight Resume", layout="centered", initial_sidebar_state="auto")
+# Configuration and Settings
+def initialize_session_state():
+    if 'chat_history' not in st.session_state:
+        st.session_state.chat_history = []
+    if 'current_resume' not in st.session_state:
+        st.session_state.current_resume = None
 
-# Custom CSS for improved UI
-st.markdown("""
-    <style>
-        /* General settings */
-        body {
-            font-family: 'Open Sans', sans-serif;
+def set_page_config():
+    st.set_page_config(
+        page_title="AI Resume Analyzer",
+        page_icon="📄",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
+def load_custom_css():
+    st.markdown("""
+        <style>
+        /* Modern color scheme */
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #e8f5e9;
+            --accent-color: #4CAF50;
+            --text-color: #424242;
+            --background-color: #ffffff;
         }
 
-        /* Page title */
-        .title {
-            color: #2E7D32;
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
+        /* Container styling */
+        .stApp {
+            background-color: var(--background-color);
         }
 
-        /* Section title */
-        .section-title {
-            color: #2E7D32;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        /* File uploader */
-        .file-uploader {
-            background-color: #e8f5e9;
-            border: 1px solid #4CAF50;
-            border-radius: 5px;
-            padding: 10px;
-        }
-
-        /* Text input */
-        .text-input {
-            border: 1px solid #4CAF50;
-            border-radius: 5px;
-            padding: 10px;
+        /* Custom card container */
+        .custom-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
-        /* Response box */
-        .response-box {
-            background-color: #e8f5e9;
-            border: 1px solid #4CAF50;
+        /* Header styling */
+        .main-header {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: linear-gradient(120deg, var(--secondary-color), #ffffff);
+            border-radius: 10px;
+        }
+
+        /* Chat message styling */
+        .chat-message {
+            padding: 1rem;
+            margin: 0.5rem 0;
             border-radius: 5px;
-            padding: 10px;
+            animation: fadeIn 0.5s ease-in;
         }
 
-        /* Sample questions */
-        .sample-questions {
-            color: #424242;
-            font-size: 1em;
+        .user-message {
+            background-color: var(--secondary-color);
+            margin-left: 2rem;
         }
 
-        /* Sample question item */
-        .sample-question-item {
-            color: #424242;
-            font-size: 1em;
-            margin-bottom: 5px;
+        .assistant-message {
+            background-color: #f5f5f5;
+            margin-right: 2rem;
         }
 
-        /* Submit button */
-        .submit-button {
-            background-color: #4CAF50;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* File uploader improvements */
+        .upload-container {
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .upload-container:hover {
+            border-color: var(--primary-color);
+            background-color: #f0f7f0;
+        }
+
+        /* Button styling */
+        .stButton > button {
+            background-color: var(--accent-color);
             color: white;
-            border: none;
             border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            margin-top: 20px;
+            padding: 0.5rem 1rem;
+            border: none;
+            transition: all 0.3s ease;
         }
-        
-        .submit-button:hover {
-            background-color: #45a049;
+
+        .stButton > button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
         }
-    </style>
-""", unsafe_allow_html=True)
 
-# Page Title
-st.markdown('<div class="title">📄 Search Insight Resume</div>', unsafe_allow_html=True)
+        /* Loading animation */
+        .loading-spinner {
+            text-align: center;
+            padding: 20px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
 
-# File Uploader
-st.markdown('<div class="file-uploader">', unsafe_allow_html=True)
-uploaded_file = st.file_uploader("Upload your resume PDF", type=["pdf"])
-st.markdown('</div>', unsafe_allow_html=True)
-docs = []
+def display_header():
+    st.markdown('<h1 class="main-header">🤖 AI Resume Analyzer</h1>', unsafe_allow_html=True)
 
-# Sample Questions Section
-st.markdown('<div class="section-title">Ask me anything about the resume, for example:</div>', unsafe_allow_html=True)
-st.markdown('<div class="sample-questions">', unsafe_allow_html=True)
-sample_questions = [
-    "Does this resume have experience with React.js or Angular?",
-    "Does this resume have strong experience in backend development?",
-    "Hồ sơ này có nhiều kĩ năng .NET không?",
-    "Does this resume have strong experience with AWS?"
-]
-for question in sample_questions:
-    st.markdown(f'<div class="sample-question-item">- {question}</div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Text Input for the Question
-st.markdown('<div class="text-input">', unsafe_allow_html=True)
-input_text = st.text_input("🔍 Your question:")
-st.markdown('</div>', unsafe_allow_html=True)
-
-# Submit Button
-if st.button('Submit', key='submit-button'):
-    if uploaded_file is not None and input_text:
-        st_callback = StreamlitCallbackHandler(st.container())
-        reader = PdfReader(uploaded_file)
-        
-        # Extract text from each page of the uploaded PDF
-        for page in reader.pages:
-            docs.append(page.extract_text())
-        
-        # Query the resume with the input text
-        response = glib.query_resume(input_text, docs, st_callback)
-        
-        # Display the response
-        st.markdown('<div class="response-box">', unsafe_allow_html=True)
-        st.write(response)
+def file_uploader_section():
+    with st.container():
+        st.markdown('<div class="upload-container">', unsafe_allow_html=True)
+        uploaded_file = st.file_uploader(
+            "Upload Resume (PDF)",
+            type=["pdf"],
+            help="Drag and drop or click to upload a PDF resume"
+        )
         st.markdown('</div>', unsafe_allow_html=True)
+        return uploaded_file
+
+def display_sample_questions():
+    with st.expander("📝 Sample Questions", expanded=False):
+        questions = [
+            "What are the candidate's main technical skills?",
+            "Summarize their work experience in the last 3 years",
+            "What programming languages do they know?",
+            "Evaluate their experience with cloud technologies",
+            "Does this person have leadership experience?"
+        ]
+        for q in questions:
+            st.markdown(f"- {q}")
+
+def chat_interface():
+    # Chat input
+    with st.container():
+        input_text = st.text_input(
+            "Ask a question about the resume:",
+            key="chat_input",
+            placeholder="Type your question here..."
+        )
+        
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            submit_button = st.button("Submit", use_container_width=True)
+        with col2:
+            clear_button = st.button("Clear Chat", use_container_width=True)
+            
+        return input_text, submit_button, clear_button
+
+def process_resume(uploaded_file):
+    if uploaded_file != st.session_state.current_resume:
+        with st.spinner("Processing resume..."):
+            reader = PdfReader(uploaded_file)
+            docs = []
+            for page in reader.pages:
+                docs.append(page.extract_text())
+            st.session_state.current_resume = uploaded_file
+            st.session_state.current_docs = docs
+            st.success("Resume processed successfully!")
+            return docs
+    return st.session_state.current_docs
+
+def display_chat_history():
+    for i, (question, answer) in enumerate(st.session_state.chat_history):
+        st.markdown(f'<div class="chat-message user-message">🤔 **You:** {question}</div>', 
+                   unsafe_allow_html=True)
+        st.markdown(f'<div class="chat-message assistant-message">🤖 **Assistant:** {answer}</div>', 
+                   unsafe_allow_html=True)
+
+def main():
+    # Initialize
+    initialize_session_state()
+    set_page_config()
+    load_custom_css()
+    
+    # Layout
+    display_header()
+    
+    # Sidebar
+    with st.sidebar:
+        st.markdown("### About")
+        st.markdown("""
+        This AI-powered tool analyzes resumes and answers your questions about candidates.
+        Upload a PDF resume and ask questions to get insights.
+        """)
+        st.divider()
+        display_sample_questions()
+    
+    # Main content
+    uploaded_file = file_uploader_section()
+    
+    if uploaded_file:
+        docs = process_resume(uploaded_file)
+        input_text, submit_button, clear_button = chat_interface()
+        
+        if clear_button:
+            st.session_state.chat_history = []
+            st.experimental_rerun()
+        
+        if submit_button and input_text:
+            with st.spinner("Analyzing..."):
+                st_callback = StreamlitCallbackHandler(st.container())
+                response = glib.query_resume(input_text, docs, st_callback)
+                st.session_state.chat_history.append((input_text, response))
+        
+        display_chat_history()
+    
     else:
-        st.error("Please upload a resume PDF and enter a question.")
+        st.info("👆 Please upload a resume to begin the analysis.")
+
+if __name__ == "__main__":
+    main()

@@ -223,7 +223,7 @@ def suggest_writing_document(input_text):
 def search(question, callback):
     # Initialize the retriever with the specified knowledge base and retrieval configuration
     retriever = AmazonKnowledgeBasesRetriever(
-        knowledge_base_id="7H2VGA3SDN",
+        knowledge_base_id="F3BT8DD8E8",
         retrieval_config={"vectorSearchConfiguration": {"numberOfResults": 1}},
     )
 

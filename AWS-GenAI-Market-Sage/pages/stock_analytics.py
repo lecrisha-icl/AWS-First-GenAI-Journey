@@ -8,7 +8,7 @@ import boto3, json
 import pandas_datareader as pdr
 import base
 
-st.set_page_config(page_title="Phân tích kỹ thuật cổ phiếu", page_icon="img/favicon.ico", layout="wide")
+st.set_page_config(page_title="Stock Technical Analysis", page_icon="img/favicon.ico", layout="wide")
 st.markdown(
   """
     <style>
@@ -24,7 +24,7 @@ st.markdown(
   unsafe_allow_html=True
 )
 
-st.title('Phân tích kỹ thuật cổ phiếu')
+st.title('Stock Technical Analysis')
 
 base.init_slidebar()
 base.init_animation()
@@ -32,8 +32,9 @@ base.init_animation()
 snp500 = pd.read_csv("data-01.csv")
 symbols = snp500['Symbol'].sort_values().tolist()    
 
-ticker = st.sidebar.selectbox('Chọn mã chứng khoán', symbols)
-infoType = st.sidebar.radio("Chọn kiểu phân tích", ('PTKT', 'PTCB'))
+ticker = st.sidebar.selectbox('Select stock ticker', symbols)
+infoType = st.sidebar.radio("Select analysis type", ('Technical Analysis', 'Fundamental Analysis'))
+
 
 # price
 def get_stock_price(ticker, history=500):

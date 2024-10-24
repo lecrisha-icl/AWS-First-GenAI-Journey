@@ -18,7 +18,7 @@ import base
 
 # Setting page title and header
 
-st.set_page_config(page_title="Trợ lý chứng khoán", page_icon="img/favicon.ico", layout="wide")
+st.set_page_config(page_title="👨‍🏫Stock Assistant", page_icon="img/favicon.ico", layout="wide")
 st.markdown(
   """
     <style>
@@ -34,7 +34,7 @@ st.markdown(
   unsafe_allow_html=True
 )
 
-st.title('Trợ lý chứng khoán')
+st.title('👨‍🏫Stock Assistant')
 
 base.init_home_state("RoboStock - Your 24/7 AI financial companion")
 base.init_slidebar()

@@ -4,7 +4,7 @@ from PyPDF2 import PdfReader
 import libs as glib 
 import base
 
-st.set_page_config(page_title="Tóm tắt tài liệu", page_icon="img/favicon.ico", layout="wide")
+st.set_page_config(page_title="Document Summary", page_icon="img/favicon.ico", layout="wide")
 st.markdown(
   """
     <style>
@@ -20,12 +20,12 @@ st.markdown(
   unsafe_allow_html=True
 )
 
-st.title('Tóm tắt tài liệu')
+st.title('Document Summary')
 
 base.init_slidebar()
 base.init_animation()
 
-uploaded_file = st.file_uploader("Tải tài liệu định dạng PDF")
+uploaded_file = st.file_uploader("Upload PDF document")
 docs = []
 
 if uploaded_file is not None:
@@ -35,4 +35,3 @@ if uploaded_file is not None:
 
     response = glib.summary_stream(docs)
     st.write_stream(response)
-   
