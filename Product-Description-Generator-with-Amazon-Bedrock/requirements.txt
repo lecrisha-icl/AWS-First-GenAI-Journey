@@ -1,0 +1,35 @@
+# Core dependencies
+langchain==0.0.343
+langchain-community
+python-dotenv
+
+# Vector store and ML
+faiss-cpu
+transformers
+torch
+
+# Image and Video Processing
+opencv-python-headless
+Pillow
+numpy
+
+# Document processing
+pypdf
+
+# AWS tools
+boto3
+botocore
+awscli
+
+# Data processing
+jq
+
+# Web interface
+streamlit
+
+# Optional: Add version pins for better reproducibility
+# boto3>=1.28.0
+# streamlit>=1.24.0
+# Pillow>=10.0.0
+# transformers>=4.30.0
+# opencv-python-headless>=4.8.0
