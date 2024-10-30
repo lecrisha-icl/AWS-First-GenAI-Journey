@@ -1,5 +1,5 @@
 # Core dependencies
-langchain==0.0.343
+langchain==0.3.0
 langchain-community
 python-dotenv
 
