@@ -1,181 +1,137 @@
-# AWS First GenAI Journey
+# Amazon Bedrock Alt Text Generator
 
-![AWS Bedrock](https://img.shields.io/badge/AWS-Bedrock-orange)
-![AWS CDK](https://img.shields.io/badge/AWS-CDK-blue)
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![License](https://img.shields.io/badge/License-Apache_2.0-green)
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![AWS](https://img.shields.io/badge/AWS-Bedrock-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.30-red)
 
 ## 🎯 Overview
 
-The AWS First GenAI Journey is a comprehensive solution that demonstrates how to build and deploy Generative AI applications on AWS. This repository provides ready-to-deploy CDK stacks and sample applications showcasing different use cases of Generative AI using Amazon Bedrock and other AWS services.
+A simple Streamlit application that uses Amazon Bedrock's AI capabilities to generate alternative text descriptions for images. This tool helps improve accessibility by providing AI-generated descriptions for uploaded images.
 
-## 🚀 Quick Start
+## ⚡️ Quick Start
 
 ### Prerequisites
 
-1. **AWS Account Setup**:
-   - Active AWS Account
-   - AWS CLI installed and configured
-   - IAM user/role with appropriate permissions
-   
-2. **Development Environment**:
-   - Python 3.11+ ([Download](https://www.python.org/downloads/))
-   - Node.js 18+ ([Download](https://nodejs.org/))
-   - AWS CDK CLI (`npm install -g aws-cdk`)
-   - Git
+- Python 3.12+ ([Download](https://www.python.org/downloads/))
+- AWS Account with Bedrock access
+- AWS CLI installed and configured
 
-### Local Environment Setup
+### Installation
 
-1. **Clone the Repository**
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
-   cd AWS-First-GenAI-Journey
+   git clone <your-repository-url>
+   cd Amazon-Bedrock-Alt-Text-Generator
    ```
 
-2. **Set Up Python Virtual Environment**
+2. **Create and activate virtual environment**
    ```bash
-   python -m venv .venv
-   
+   # Create virtual environment
+   python -m venv streamlit_env
+
    # Windows
-   .venv\Scripts\activate
-   
+   streamlit_env\Scripts\activate
+
    # macOS/Linux
-   source .venv/bin/activate
+   source streamlit_env/bin/activate
    ```
 
-3. **Install Dependencies**
+3. **Install required packages**
    ```bash
    pip install -r requirements.txt
    ```
 
-## 📁 Repository Structure
-
-```
-AWS-First-GenAI-Journey/
-├── infrastructure/             # CDK infrastructure code
-├── src/                       # Application source code
-│   ├── api/                   # API implementations
-│   ├── layers/                # Lambda layers
-│   └── tools/                 # Utility tools
-├── test/                      # Test files
-├── cdk.json                   # CDK configuration
-└── README.md                  # Project documentation
-```
-
-## 💻 Available Demos
-
-1. **Document Q&A**
-   - Build a document Q&A system using Bedrock
-   - Includes RAG (Retrieval-Augmented Generation) implementation
-   - Supports PDF, TXT, and DOC formats
-
-2. **Image Generation**
-   - Generate images using Stable Diffusion
-   - Custom prompt engineering
-   - Image manipulation and editing
-
-3. **Text Generation**
-   - Text completion and generation
-   - Custom prompt templates
-   - Multiple model support
-
-## 🏗️ Deployment
-
-### CDK Deployment
-
-1. **Bootstrap CDK** (if not already done)
+4. **Set up environment variables**
    ```bash
-   cdk bootstrap
-   ```
-
-2. **Deploy the Stack**
-   ```bash
-   cdk deploy
-   ```
-
-### Configuration
-
-1. **Environment Variables**
-   Copy `.env.example` to `.env` and update the values:
-   ```bash
+   # Create .env file
    cp .env.example .env
+
+   # Update .env with your AWS credentials
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   AWS_DEFAULT_REGION=your_region
    ```
 
-2. **AWS Region Configuration**
-   Update the region in `cdk.json` if needed:
-   ```json
-   {
-     "app": "python app.py",
-     "region": "us-east-1"
-   }
-   ```
-
-## 📊 Architecture
-
-The solution is built using the following AWS services:
-
-- **Amazon Bedrock**: For AI/ML model inference
-- **Amazon S3**: For storing documents and artifacts
-- **Amazon DynamoDB**: For metadata and session management
-- **AWS Lambda**: For serverless compute
-- **Amazon API Gateway**: For REST API endpoints
-- **AWS CDK**: For infrastructure as code
-
-## 🔧 Development
-
-### Adding New Features
-
-1. Create a new branch:
+5. **Run the application**
    ```bash
-   git checkout -b feature/your-feature-name
+   streamlit run app.py
    ```
 
-2. Make your changes and commit:
-   ```bash
-   git add .
-   git commit -m "Add: your feature description"
-   ```
-
-3. Push and create a pull request:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-### Running Tests
-
-```bash
-pytest test/
+## 📁 Project Structure
+```
+.
+├── app.py                  # Main Streamlit application
+├── files/                  # File upload directory
+├── images/                 # Static image assets
+├── streamlit_env/          # Virtual environment
+├── .env                    # Environment variables
+├── .gitignore             # Git ignore file
+├── requirements.txt        # Project dependencies
+└── README.md              # Documentation
 ```
 
-## 🤝 Contributing
+## 📝 Requirements
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for more details.
+Main dependencies:
+```txt
+streamlit==1.30.0
+boto3==1.34.0
+python-dotenv==1.0.0
+Pillow==10.1.0
+```
 
-## 📝 License
+## 🔑 AWS Configuration
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+1. **Configure AWS Credentials**
+   - Create an IAM user with Bedrock access
+   - Configure AWS CLI:
+     ```bash
+     aws configure
+     ```
+   - Or set environment variables in `.env`
 
-## 🆘 Support
+2. **Enable Bedrock Model Access**
+   - Go to AWS Console > Bedrock
+   - Enable required model access in Model Access settings
 
-- Create a GitHub issue for bug reports and feature requests
-- Contact AWS Support for AWS-related issues
-- Check AWS Documentation for service-specific guidance
+## 💡 Usage
 
-## 📚 Additional Resources
+1. Start the app:
+   ```bash
+   streamlit run app.py
+   ```
 
-- [Amazon Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
-- [AWS CDK Python Reference](https://docs.aws.amazon.com/cdk/api/v2/python/)
-- [Generative AI on AWS](https://aws.amazon.com/generative-ai/)
-- [AWS Solutions Architect Blog](https://aws.amazon.com/blogs/architecture/)
+2. Open web browser:
+   - Local URL: http://localhost:8501
+   - Network URL: http://192.168.x.x:8501
 
-## 🔄 Updates and Maintenance
+3. Upload an image and wait for the AI-generated description
 
-This repository is actively maintained. Please watch the repository for updates and check the [CHANGELOG](CHANGELOG.md) for version history.
+## ❗ Common Issues
 
-## ⭐ Star History
+1. **AWS Credentials Error**
+   - Verify AWS credentials in `.env`
+   - Check AWS CLI configuration
+   - Ensure IAM user has Bedrock access
 
-If you find this project useful, please give it a star! Your support helps us continue developing and maintaining this resource.
+2. **Import Errors**
+   - Confirm all dependencies are installed:
+     ```bash
+     pip install -r requirements.txt
+     ```
 
-## 📫 Contact
+3. **Streamlit Port Issues**
+   - Change port if 8501 is in use:
+     ```bash
+     streamlit run app.py --server.port 8502
+     ```
 
-For any questions or feedback, please reach out to the AWS Solutions Architecture team or create an issue in this repository.
+## 📫 Support
+
+- Create an issue for bug reports or features
+- Check AWS Bedrock documentation for service issues
+- Review Streamlit docs for framework questions
+
+## 📜 License
+
+This project is under the MIT License. See LICENSE file for details.

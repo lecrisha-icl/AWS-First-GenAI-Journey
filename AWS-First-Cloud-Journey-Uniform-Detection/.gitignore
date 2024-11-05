@@ -1,4 +1,96 @@
-check_in/__pycache__/check_in_app.cpython-312.pyc
-check_in/__pycache__/check_uniform_app.cpython-312.pyc
-__pycache__
+# Environment variables and secrets
+.env
+.env.*
+*.pem
+*.key
+secrets.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
 .DS_Store
+Thumbs.db
+*.sublime-workspace
+*.sublime-project
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+test-results/
+coverage.xml
+*.cover
+
+# AWS specific
+.aws/
+credentials
+config
+*.aws-sam/
+
+# Project specific
+check_in/temp/
+check_uniform/output/
+content_moderation/cache/
+product_description/data/
+*.log
+logs/
+temp/
+output/
+processed_images/
+raw_images/
+
+# Model files
+*.h5
+*.pkl
+*.model
+*.pt
+*.pth
+*.weights
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Documentation
+docs/_build/
+site/
+
+# Databases
+*.db
+*.sqlite3
+
+# Temporary files
+*.bak
+*.tmp
+*.temp
+~*

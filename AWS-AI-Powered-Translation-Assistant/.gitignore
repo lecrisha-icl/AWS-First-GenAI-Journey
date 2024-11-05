@@ -1,0 +1,55 @@
+# Environment variables
+.env
+.env.*
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Application specific
+logs/
+*.log
+temp/
+output/
+translations/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Local development settings
+local_settings.py
+
+# AWS credentials
+.aws/
+credentials
+config
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Test files
+test_*.py
+tests/

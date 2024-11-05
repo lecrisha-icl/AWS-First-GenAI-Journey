@@ -1,86 +1,160 @@
-# AWS First GenAI Journey - Stock-Assistant
+# AWS GenAI Market Sage
 
-## Technical Guide: Stock-Assistant with Amazon Bedrock and Claude 3 Sonnet Model
+A Generative AI-powered market analysis tool built on AWS services for intelligent market insights and predictions.
 
-### Overview
+## Overview
 
-The **Stock-Assistant** demo leverages **Amazon Bedrock** and **Anthropic's Claude 3 Sonnet Model** using **Langchain** and **Streamlit**. This project demonstrates how to build and deploy an AI-driven assistant capable of interacting with stock-related data and assisting users in querying relevant information.
+AWS GenAI Market Sage leverages advanced AI models to analyze market data, generate insights, and provide predictive analytics for business decision-making.
 
-For detailed documentation, visit:
-- [Amazon Bedrock Overview](https://aws.amazon.com/bedrock/)
-- [Claude 3 Overview](https://www.anthropic.com/news/claude-3-family)
+## Project Structure
 
----
+```
+.
+├── __pycache__/          # Python cache
+├── img/                  # Image resources
+├── pages/               # Application pages
+├── architecture.png     # System architecture diagram
+├── base.py             # Base configurations
+├── company.json        # Company data configuration
+├── data-01.csv         # Primary dataset
+├── data-02.csv         # Secondary dataset
+├── Home.py            # Main application entry point
+├── libs.py            # Utility libraries
+├── requirements.txt   # Project dependencies
+└── README.md         # Documentation
+```
 
-### Setup Instructions
+## Features
 
-#### 1. Install Python
-Ensure Python is installed. Refer to the [official installation guide](https://docs.python-guide.org/starting/install3/linux/).
+- Market trend analysis
+- Predictive analytics
+- Company data processing
+- Custom data visualization
+- AWS-powered AI insights
+- Multi-page interactive dashboard
 
-#### 2. Set Up a Python Virtual Environment
-To avoid dependency issues, create a virtual environment:
+## Prerequisites
+
+- Python 3.12+
+- AWS Account with appropriate permissions
+- Basic understanding of market analysis
+- Required Python packages (listed in requirements.txt)
+
+## Installation
+
+1. Clone the repository:
 ```bash
-# Install virtualenv if needed
-pip install virtualenv
+git clone https://github.com/yourusername/AWS-GenAI-Market-Sage.git
+cd AWS-GenAI-Market-Sage
+```
 
-# Create a virtual environment
-virtualenv venv
-
-# Activate the virtual environment (Linux/Mac)
-source venv/bin/activate
-
-# (Windows)
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+# On Windows
 venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
 ```
 
-#### 3. Install AWS CLI
-To configure and access AWS services (Amazon Bedrock), install the AWS CLI:
-- [AWS CLI Quickstart](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
-
-After installation, configure it with your AWS credentials:
+3. Install dependencies:
 ```bash
-aws configure
-```
-
-#### 4. Clone the Repository and Run the Application
-```bash
-# Clone the repository
-git clone https://github.com/aws-samples/AWS-First-GenAI-Journey.git
-
-# Change into the directory
-cd AWS-First-GenAI-Journey/stock-assistant
-
-# Install required dependencies
 pip install -r requirements.txt
-
-# Run the app using Streamlit
-streamlit run Home.py --server.port 8501
 ```
 
-Access the app at `http://localhost:8501`.
+## Environment Configuration
 
----
+Create a `.env` file in the root directory:
+```
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+OPENAI_API_KEY=your_openai_key  # If using OpenAI integration
+```
 
-### Architecture
+## Data Files
 
-The Stock-Assistant is designed with modular components, focusing on scalability and ease of integration:
-- **Amazon Bedrock**: AI model hosting and inference service.
-- **Claude 3 Sonnet**: NLP model from Anthropic for interacting with users.
-- **Langchain**: Framework for integrating AI models into applications.
-- **Streamlit**: Frontend framework for creating interactive web applications.
+- `data-01.csv`: Primary market dataset
+- `data-02.csv`: Secondary market dataset
+- `company.json`: Company configuration and metadata
 
-![Architecture](./architecture.png)
+## Usage
 
----
+1. Start the application:
+```bash
+python Home.py
+```
 
-### Learn More About Prompts and Claude 3
+2. Using the base utilities:
+```python
+from base import setup_environment
 
-For more insights on prompt design and the Claude 3 model:
-- [Prompt Design Guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
-- [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
+# Initialize environment
+env = setup_environment()
+```
 
----
+3. Using library functions:
+```python
+from libs import analyze_market_data
 
-### Contributing
+# Analyze market data
+results = analyze_market_data(dataset_path='data-01.csv')
+```
 
-We welcome contributions! Please submit your pull requests to the [AWS First GenAI Journey repo](https://github.com/aws-samples/AWS-First-GenAI-Journey).
+## Architecture
+
+Refer to `architecture.png` for a detailed system architecture diagram showing the interaction between different components and AWS services.
+
+## Development
+
+### Setting Up Development Environment
+
+1. Install development dependencies:
+```bash
+pip install -r requirements-dev.txt
+```
+
+2. Configure pre-commit hooks:
+```bash
+pre-commit install
+```
+
+### Code Style
+
+- Follow PEP 8 guidelines
+- Use type hints
+- Document functions and classes
+
+## Testing
+
+Run tests using pytest:
+```bash
+pytest tests/
+```
+
+## Security Best Practices
+
+- Never commit sensitive credentials
+- Use AWS IAM roles
+- Regularly update dependencies
+- Monitor AWS CloudWatch logs
+- Implement data encryption
+
+## Troubleshooting
+
+Common issues and solutions:
+- Data loading errors: Verify CSV format
+- AWS connection issues: Check credentials
+- Memory errors: Reduce batch size
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
