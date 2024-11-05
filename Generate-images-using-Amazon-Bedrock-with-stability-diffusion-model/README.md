@@ -1,140 +1,179 @@
-# AWS Bedrock Image Generator
+# Generate Images Using Amazon Bedrock with Stability Diffusion Model
 
-## Step-by-Step Guide for AWS Bedrock Image Generator
+A Python application that leverages Amazon Bedrock and the Stability Diffusion model to generate high-quality images from text prompts.
 
-The following guide will help you set up, run, and use the **AWS Bedrock Image Generator** project from the repository. This project enables you to generate images using AWS Bedrock's Stable Diffusion models with a simple and user-friendly Streamlit interface.
+## Project Structure
 
----
+```
+.
+├── images/              # Generated images directory
+├── prompt/             # Prompt templates and examples
+├── app.py             # Main application
+└── requirements.txt   # Project dependencies
+```
+
+## Features
+
+- Text-to-image generation
+- Prompt optimization
+- Customizable image parameters
+- Batch image generation
+- Multiple style support
+- Image variation generation
+- Resolution control
+- Style mixing capabilities
 
 ## Prerequisites
 
-Before starting, ensure you have the following:
+- Python 3.12+
+- AWS Account with Bedrock access
+- Appropriate IAM permissions
+- Required Python packages (see requirements.txt)
 
-- **AWS Account**: With access to AWS Bedrock in the `us-west-2` region.
-- **AWS CLI Installed**: Configure it with your credentials.
-- **Python 3.7+**: Ensure you have Python installed.
-- **Pip**: Python package manager for installing dependencies.
+## Installation
 
----
-
-## Step 1: Clone the Repository
-
-First, clone the project repository to your local environment using Git.
-
+1. Clone the repository:
 ```bash
-git clone https://github.com/awsstudygroup/AWS-Bedrock-Image-Generator.git
-cd AWS-Bedrock-Image-Generator
+git clone https://github.com/yourusername/Generate-Images-Amazon-Bedrock-Stability.git
+cd Generate-Images-Amazon-Bedrock-Stability
 ```
 
-This will download all necessary files for the application to function properly.
+2. Create virtual environment:
+```bash
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
+```
 
----
-
-## Step 2: Install Dependencies
-
-The project requires several Python libraries to function. You can install all the dependencies listed in the `requirements.txt` file using `pip`.
-
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-**Key dependencies:**
+## Environment Setup
 
-- **Streamlit**: Used to create the web app interface.
-- **boto3**: AWS SDK for interacting with AWS services, including Bedrock.
-- **Pillow**: For image processing and manipulation.
-
----
-
-## Step 3: Configure AWS Credentials
-
-Make sure your AWS credentials are properly set up on the machine where you will be running the application. You can configure your credentials using the AWS CLI by running:
-
-```bash
-aws configure
+Create a `.env` file in the root directory:
+```
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+IMAGE_OUTPUT_DIR=./images
 ```
 
-You will be prompted to enter:
+## Usage
 
-- AWS Access Key ID
-- AWS Secret Access Key
-- Default Region Name: `us-west-2`
-- Default Output Format: `json`
+### Basic Image Generation
 
-This step ensures that your environment can interact with AWS Bedrock.
+```python
+from app import generate_image
 
----
-
-## Step 4: Run the Application
-
-Once all dependencies are installed and AWS credentials are configured, you can run the Streamlit application:
-
-```bash
-streamlit run app.py
+image = generate_image(
+    prompt="A serene lake at sunset with mountains in the background",
+    style="realistic",
+    size=(1024, 1024)
+)
 ```
 
-The application will start and open in your default web browser, displaying the interface where you can input your prompt and generate images.
+### Batch Generation
 
----
+```python
+from app import batch_generate
 
-## Step 5: Using the Application
+images = batch_generate(
+    prompts=["prompt1", "prompt2", "prompt3"],
+    base_style="photographic"
+)
+```
 
-Now that the app is running, you can use it to generate images with AWS Bedrock:
+## Prompt Guidelines
 
-1. **Enter a Creative Prompt**: Input the descriptive text that will be used to generate your image. For example: `A landscape painting of mountains during sunrise`.
-   
-2. **Select a Model**: Choose the Stable Diffusion model you want to use (Stability AI models available via AWS Bedrock).
-   
-3. **Advanced Options**:
-    - **Image Orientation**: Select portrait, landscape, or square.
-    - **Generation Steps**: Control how many diffusion steps the model should use.
-    - **Seed**: Set a seed for reproducibility of generated images.
-    - **Negative Prompts**: Avoid certain elements in your image by using negative prompts.
+### Effective Prompt Structure
+```
+[Style] [Subject] [Details] [Lighting] [Composition]
 
-4. **Generate Image**: Click the `Generate Image` button. The app will send a request to AWS Bedrock for image generation, which may take a few seconds to process.
+Example:
+"Cinematic photograph of a majestic eagle soaring through a stormy sky, dramatic lighting, ultra-detailed feathers, 4K resolution"
+```
 
-5. **Download the Image**: Once the images are generated, you can download them directly using the download buttons provided below each image.
+### Style Keywords
+- Photorealistic
+- Cinematic
+- Digital Art
+- Oil Painting
+- Watercolor
+- Studio Photography
+- Abstract
 
-**Example Generated Image**:
+## Configuration Options
 
-![Generated Image](./images/generated_image.png)
+### Image Parameters
+```python
+parameters = {
+    "width": 1024,
+    "height": 1024,
+    "steps": 50,
+    "cfg_scale": 7.5,
+    "style_preset": "photographic",
+    "seed": 42  # Optional for reproducibility
+}
+```
 
----
+### Style Mixing
+```python
+style_config = {
+    "style1_weight": 0.7,
+    "style2_weight": 0.3,
+    "style1": "photographic",
+    "style2": "digital-art"
+}
+```
 
-## Example
+## Best Practices
 
-Here's how a typical session would look:
+1. Prompt Engineering
+   - Be specific and detailed
+   - Use descriptive adjectives
+   - Include style preferences
+   - Specify composition details
 
-- **Prompt**: `A futuristic city with flying cars under a blue sky`
-- **Advanced Settings**: Orientation = `Landscape`, Steps = `50`, Seed = `12345`
-- **Output**: A high-resolution image based on the provided prompt.
+2. Image Quality
+   - Use appropriate resolution
+   - Adjust step count for quality
+   - Fine-tune CFG scale
+   - Consider style presets
 
-![Generated Image](./images/generated_image_1.png)
+3. Performance
+   - Batch similar requests
+   - Cache common generations
+   - Monitor API usage
+   - Optimize prompt length
 
----
+## Error Handling
 
-## Customizing the App (Optional)
+Common issues and solutions:
+- API rate limits
+- Resource constraints
+- Invalid prompt format
+- Image generation failures
 
-If you want to further customize the app (e.g., add new features or change the UI), you can modify the `app.py` file.
+## Security
 
----
-
-## Troubleshooting
-
-- **AWS Access Issues**: Make sure your AWS credentials are properly configured and that you have permissions to access AWS Bedrock.
-- **Streamlit Errors**: Ensure all dependencies are installed correctly. Run `pip install -r requirements.txt` if missing packages are identified.
-- **KeyError: 'generatedImages'**: If you encounter a KeyError while generating images, check the AWS Bedrock API response structure in `boto3` and ensure that the request format is correct in your `app.py`.
-
----
+- Secure credential management
+- Content filtering
+- Access control
+- Usage monitoring
+- Regular audits
 
 ## Contributing
 
-We welcome contributions! Please feel free to submit pull requests or open issues if you have suggestions for improvements.
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the [Apache 2.0 License](LICENSE).
-
----
-
-Happy image generating!
+This project is licensed under the MIT License - see the LICENSE file for details.

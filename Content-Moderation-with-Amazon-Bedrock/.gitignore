@@ -2,3 +2,123 @@ check_in/__pycache__/check_in_app.cpython-312.pyc
 check_in/__pycache__/check_uniform_app.cpython-312.pyc
 __pycache__
 .DS_Store
+# Environment variables
+.env
+.env.*
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project specific
+content_moderation/cache/
+check_in/temp/
+check_uniform/output/
+product_description/data/
+moderation_logs/
+processed_content/
+*.log
+logs/
+temp/
+cache/
+
+# Content files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+content_samples/
+test_content/
+
+# Moderation outputs
+reports/
+analysis/
+output/
+results/
+*.report
+*.analysis
+
+# Credentials
+.aws/
+credentials
+config
+*.pem
+*.key
+secrets/
+
+# Testing
+.coverage
+.tox/
+.pytest_cache/
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+site/
+
+# Temporary files
+*.bak
+*.tmp
+*.temp
+~*
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# Model files
+models/
+*.h5
+*.pkl
+*.model
+*.weights
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Jupyter Notebook
+.ipynb_checkpoints

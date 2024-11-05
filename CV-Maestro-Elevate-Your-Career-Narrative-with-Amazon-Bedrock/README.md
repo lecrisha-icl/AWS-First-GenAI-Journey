@@ -1,148 +1,168 @@
-# CV Maestro: Elevate Your Career Narrative with Amazon Bedrock
+# CV Maestro: Elevate Your Career Narrative
 
-## Overview
-**CV Maestro** is an advanced AI-powered CV and career development assistant designed to revolutionize how professionals craft and optimize their career narratives. Built on Amazon Bedrock and powered by Anthropic's Claude model, integrated with the LangChain framework, CV Maestro offers sophisticated capabilities in:
+An AI-powered CV enhancement tool built with Amazon Bedrock to help professionals create compelling career narratives and stand out in their job applications.
 
-- 🎯 Intelligent CV analysis and optimization
-- 📝 Professional summary and achievement crafting
-- 💡 Career progression recommendations
-- 📊 Skills gap analysis
-- 🤝 Interview preparation guidance
+## Project Structure
 
-The platform demonstrates the transformative potential of AI in enhancing career development and professional presentation.
-
-For more information about our core technologies:
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Anthropic Claude](https://www.anthropic.com/index/claude-2)
-- [LangChain](https://python.langchain.com/docs/get_started/introduction)
+```
+.
+├── __pycache__/         # Python cache directory
+├── pages/              # Application pages
+├── Architecture.png    # System architecture diagram
+├── get-pip.py         # Pip installer
+├── Home.py            # Main application entry
+├── recruitment_lib.py  # Recruitment utilities
+└── requirements.txt   # Project dependencies
+```
 
 ## Features
 
-- **Smart CV Assistant**: Generate compelling professional summaries, optimize achievements, and create tailored CV versions
-- **Multilingual Support**: Process and enhance CVs in multiple languages
-- **Interactive Chat Interface**: User-friendly Streamlit interface for seamless interaction
-- **Customizable Templates**: Adapt the system to different CV formats and industry standards
-- **Secure Processing**: Enterprise-grade security with AWS infrastructure
+- AI-powered CV content enhancement
+- Professional achievement highlighting
+- Skills gap analysis
+- Industry-specific keyword optimization
+- Action verb suggestions
+- Accomplishment quantification
+- Personal brand development
+- ATS (Applicant Tracking System) optimization
 
-## Setup Guide
+## Prerequisites
 
-### Prerequisites
-Before getting started with CV Maestro, ensure you have:
-- **Python 3.x** installed ([Installation Guide](https://docs.python-guide.org/starting/install3/linux/))
-- **AWS CLI** configured ([Quickstart Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html))
-- An active **AWS Account** with Amazon Bedrock access
-- **Git** installed for repository management
+- Python 3.12+
+- AWS Account with Bedrock access
+- Basic understanding of CV/resume writing
+- Required Python packages (listed in requirements.txt)
 
-### Step 1: Environment Setup
-Create and activate a Python virtual environment:
+## Installation
+
+1. Clone the repository:
 ```bash
-python3 -m venv cv-maestro-env
-source cv-maestro-env/bin/activate  # For Linux/MacOS
-# Or
-.\cv-maestro-env\Scripts\activate  # For Windows
+git clone https://github.com/yourusername/CV-Maestro.git
+cd CV-Maestro
 ```
 
-### Step 2: Clone Repository
-Get the CV Maestro source code:
+2. Set up virtual environment:
 ```bash
-git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
-cd AWS-First-GenAI-Journey
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
 ```
 
-### Step 3: Install Dependencies
-Install required packages:
+3. Install dependencies:
 ```bash
+python get-pip.py
 pip install -r requirements.txt
 ```
 
-### Step 4: AWS Configuration
-Set up your AWS credentials:
-```bash
-aws configure
+## Environment Configuration
+
+Create a `.env` file in the root directory:
 ```
-Enter your:
-- AWS Access Key ID
-- AWS Secret Access Key
-- Default region (e.g., us-west-2)
-- Preferred output format (json recommended)
-
-### Step 5: Launch Application
-Start CV Maestro:
-```bash
-streamlit run Home.py --server.port 8080
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+MODEL_TEMPERATURE=0.7
 ```
-Access the application at `http://localhost:8080`
 
-## Architecture
+## Usage
 
-CV Maestro implements a modern, scalable architecture that seamlessly integrates AI capabilities with user-friendly interfaces:
+### Starting the Application
 
-![Architecture](./Architecture.png)
+```bash
+python Home.py
+```
 
-Key Components:
-- **Frontend**: Streamlit-based interactive interface
-- **Backend**: Python-based processing engine
-- **AI Engine**: Amazon Bedrock & Claude model integration
-- **Framework**: LangChain for robust AI interactions
+### Using Recruitment Library
+
+```python
+from recruitment_lib import enhance_experience
+
+# Enhance job experience
+enhanced_content = enhance_experience(
+    original_text="Managed a team of developers",
+    industry="Technology",
+    level="Senior"
+)
+```
+
+## Features in Detail
+
+### 1. Content Enhancement
+- Professional tone adjustment
+- Impact statement generation
+- Achievement quantification
+- Skills highlighting
+
+### 2. ATS Optimization
+- Keyword analysis
+- Format compatibility
+- Industry-specific terms
+- Ranking improvement
+
+### 3. Personal Branding
+- Unique value proposition
+- Professional narrative
+- Core competencies
+- Career progression
 
 ## Best Practices
 
-### Prompt Engineering
-For optimal results with CV Maestro:
-- Be specific about your career goals and target roles
-- Provide detailed context about your experience
-- Use system-provided templates when available
-- Review the [prompt design guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
+### CV Writing Guidelines
+- Use strong action verbs
+- Quantify achievements
+- Focus on results
+- Maintain consistency
+- Tailor for specific roles
 
-### Performance Optimization
-- Upload high-quality CV documents
-- Utilize pre-built templates
-- Take advantage of industry-specific recommendations
-- Review and customize AI suggestions
+### AI Enhancement Tips
+- Provide detailed input
+- Review AI suggestions
+- Maintain authenticity
+- Cross-reference skills
+- Verify industry terms
+
+## Architecture
+
+The `Architecture.png` diagram shows:
+- System components
+- Data flow
+- AWS service integration
+- Processing pipeline
+
+## Performance Tips
+
+- Pre-process content
+- Use industry templates
+- Batch process updates
+- Cache common enhancements
+- Optimize API calls
+
+## Security
+
+- Secure data handling
+- Content encryption
+- Access control
+- Privacy protection
+- Regular audits
+
+## Troubleshooting
+
+Common issues and solutions:
+- Content processing errors
+- API rate limits
+- Format compatibility
+- Enhancement quality
 
 ## Contributing
 
-We welcome contributions to CV Maestro! Here's how to get involved:
-
-1. **Fork the Repository**
-   - Click the 'Fork' button on GitHub
-
-2. **Create a Feature Branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make Your Changes**
-   ```bash
-   git add .
-   git commit -m "Add: detailed description of your changes"
-   ```
-
-4. **Push Changes**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. **Submit a Pull Request**
-   - Create a PR with a clear description of your changes
-   - Follow our code style guidelines
-   - Ensure all tests pass
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
 ## License
 
-CV Maestro is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
-
-## Support
-
-- **Documentation**: Refer to our [Wiki](https://github.com/aws-samples/AWS-First-GenAI-Journey/wiki)
-- **Issues**: Submit problems or suggestions [here](https://github.com/aws-samples/AWS-First-GenAI-Journey/issues)
-- **Discussions**: Join our [community discussions](https://github.com/aws-samples/AWS-First-GenAI-Journey/discussions)
-
-## Acknowledgments
-
-CV Maestro is built with and supported by:
-- Amazon Web Services
-- Anthropic
-- LangChain
-- Streamlit
-- Our amazing community of contributors
+This project is licensed under the MIT License - see the LICENSE file for details.

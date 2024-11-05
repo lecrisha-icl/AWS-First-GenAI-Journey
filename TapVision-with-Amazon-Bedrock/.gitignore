@@ -2,3 +2,132 @@ check_in/__pycache__/check_in_app.cpython-312.pyc
 check_in/__pycache__/check_uniform_app.cpython-312.pyc
 __pycache__
 .DS_Store
+# Environment variables
+.env
+.env.*
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project specific
+processed_images/
+analysis_results/
+moderation_output/
+descriptions/
+cache/
+temp/
+
+# Image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.tiff
+*.bmp
+*.raw
+!examples/*.jpg
+!examples/*.png
+
+# Generated content
+output/
+results/
+analysis/
+reports/
+*.json
+*.csv
+*.xml
+
+# Logs
+logs/
+*.log
+debug/
+error_logs/
+
+# Credentials
+.aws/
+credentials
+config
+secrets/
+*.pem
+*.key
+
+# Testing
+.coverage
+.tox/
+.pytest_cache/
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+site/
+
+# Temporary files
+*.bak
+*.tmp
+*.temp
+~*
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Cache directories
+.cache/
+__pycache__/
+.pytest_cache/
+
+# Backup files
+*~
+*.bak
+*.swp
+*.swo
+
+# Model files
+*.model
+*.weights
+*.h5
+*.pkl
+
+# Local development
+local_settings.py
+dev_config.py

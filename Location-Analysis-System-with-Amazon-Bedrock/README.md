@@ -1,75 +1,196 @@
-# AWS First GenAI
+# Location Analysis System with Amazon Bedrock
 
-## Overview 
-This is a simple demo of Amazon Bedrock and Anthropic Claude 3.5 model with langchain library. For more detail please reference the following links:
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Anthropic Claude 3.5](https://www.anthropic.com/claude)
+An intelligent location analysis system powered by Amazon Bedrock for processing and analyzing location data, content moderation, and product descriptions.
 
-## Prerequisites
-- [Python Installation Guide](https://docs.python-guide.org/starting/install3/linux/)
-- [AWS CLI Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
-- Python 3.10 or higher
-- AWS account with Bedrock access
+## Project Structure
 
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone 
-   ```
-
-2. Navigate to project directory:
-   ```bash
-   cd AWS-First-GenAI
-   ```
-
-3. Create and activate Python virtual environment:
-   ```bash
-   # Windows
-   python -m venv venv-python3.10
-   .\venv-python3.10\Scripts\activate
-
-   # macOS/Linux
-   python3.10 -m venv venv-python3.10
-   source venv-python3.10/bin/activate
-   ```
-
-4. Install required packages:
-   ```bash
-   pip3 install -r requirements.txt
-   ```
-
-5. Run the Streamlit application:
-   ```bash
-   streamlit run Home.py --server.port 8080
-   ```
-
-## Important Resources
-- [Introduction to Prompt Design](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
-
-## Features
-- Integration with Amazon Bedrock
-- Anthropic Claude 3.5 implementation
-- Streamlit web interface
-- LangChain implementation
-
-## Configuration
-Ensure your AWS credentials are properly configured with access to Bedrock service. You can configure AWS credentials using:
-```bash
-aws configure
+```
+.
+├── check_in/                  # Check-in functionality
+├── check_uniform/             # Uniform data validation
+├── content_moderation/        # Content moderation module
+├── content_moderation.1/      # Extended moderation features
+├── product_description/       # Product analysis
+├── Home.py                   # Main application
+├── image_lib.py              # Image processing utilities
+├── Libs.py                   # Common library functions
+├── Main.py                   # Core application logic
+└── requirements.txt          # Project dependencies
 ```
 
-To use Claude 3.5 in Bedrock, make sure to specify the model ID as "anthropic.claude-3.5-sonnet" in your configuration.
+## Features
 
-## Dependencies
-- langchain==0.0.343
-- streamlit
-- boto3
-- botocore
-- python-dotenv
-- Additional dependencies listed in requirements.txt
+- Location data analysis
+- Check-in system
+- Content moderation
+- Product description analysis
+- Image processing
+- Uniform data validation
+- Real-time location tracking
+- Geospatial analysis
 
-## Support
-For more information about the components used:
-- Amazon Bedrock: [AWS Bedrock Documentation](https://aws.amazon.com/bedrock/)
-- Anthropic Claude: [Claude Documentation](https://www.anthropic.com/claude)
-- LangChain: [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction.html)
+## Prerequisites
+
+- Python 3.12+
+- AWS Account with Bedrock access
+- Required Python packages (listed in requirements.txt)
+- Access to location services APIs
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Location-Analysis-System.git
+cd Location-Analysis-System
+```
+
+2. Create virtual environment:
+```bash
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Environment Configuration
+
+Create a `.env` file in the root directory:
+```
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+MAPS_API_KEY=your_maps_api_key
+LOCATION_SERVICE_URL=your_location_service_url
+```
+
+## Usage
+
+### Location Analysis
+
+```python
+from Libs import analyze_location
+
+location_data = analyze_location(
+    latitude=37.7749,
+    longitude=-122.4194,
+    radius=1000  # meters
+)
+```
+
+### Check-in System
+
+```python
+from check_in import process_check_in
+
+check_in_result = process_check_in(
+    user_id="user123",
+    location={
+        "latitude": 37.7749,
+        "longitude": -122.4194
+    },
+    timestamp="2024-03-15T10:30:00Z"
+)
+```
+
+### Content Moderation
+
+```python
+from content_moderation import moderate_content
+
+moderation_result = moderate_content(
+    content_type="location_description",
+    content="Location description text",
+    severity_level="medium"
+)
+```
+
+## Core Components
+
+### 1. Location Processing
+- Coordinate validation
+- Geocoding
+- Distance calculations
+- Area analysis
+- Clustering
+
+### 2. Check-in System
+- User verification
+- Location validation
+- Timestamp processing
+- Attendance tracking
+- History management
+
+### 3. Content Moderation
+- Text analysis
+- Image validation
+- Location description review
+- Automated filtering
+- Manual review queue
+
+### 4. Product Description
+- Location-based descriptions
+- Automated categorization
+- Keyword extraction
+- SEO optimization
+
+## Data Processing
+
+### Location Data Format
+```json
+{
+    "location_id": "loc123",
+    "coordinates": {
+        "latitude": 37.7749,
+        "longitude": -122.4194
+    },
+    "accuracy": 10,
+    "timestamp": "2024-03-15T10:30:00Z",
+    "metadata": {
+        "venue_type": "restaurant",
+        "capacity": 100
+    }
+}
+```
+
+## Security
+
+- Data encryption
+- Location data privacy
+- Access control
+- Audit logging
+- GDPR compliance
+
+## Performance Optimization
+
+- Batch processing
+- Caching strategies
+- Query optimization
+- Load balancing
+- Resource scaling
+
+## Error Handling
+
+Common issues and solutions:
+- Location service unavailability
+- Invalid coordinates
+- API rate limits
+- Data validation errors
+- Connection timeouts
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

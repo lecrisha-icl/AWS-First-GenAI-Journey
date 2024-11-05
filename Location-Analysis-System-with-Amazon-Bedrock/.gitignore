@@ -2,3 +2,125 @@ check_in/__pycache__/check_in_app.cpython-312.pyc
 check_in/__pycache__/check_uniform_app.cpython-312.pyc
 __pycache__
 .DS_Store
+# Environment variables
+.env
+.env.*
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# IDE and Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project specific
+check_in/temp/
+check_uniform/output/
+content_moderation/cache/
+product_description/data/
+location_data/
+geocoding_cache/
+coordinates/
+
+# Location data
+*.gpx
+*.kml
+*.geojson
+locations.json
+coordinates.csv
+!examples/*.geojson
+
+# Logs and Reports
+logs/
+reports/
+*.log
+analysis/
+statistics/
+
+# Images and Media
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+maps/
+screenshots/
+
+# Cache and Temporary
+cache/
+temp/
+.tmp/
+*.cache
+*.tmp
+
+# Credentials
+.aws/
+credentials
+config
+secrets/
+*.pem
+*.key
+api_keys.txt
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Testing
+.coverage
+.tox/
+.pytest_cache/
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+site/
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints

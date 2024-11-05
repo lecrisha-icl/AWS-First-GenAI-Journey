@@ -1,93 +1,164 @@
-# Technical Guide: Stock-Assistant with Amazon Bedrock and Claude 3 Sonnet Model
+# AWS Stock Agent with Bedrock
 
-This repository is a part of AWS's Generative AI journey examples, based on the AWS official sample repository available at [AWS First GenAI Journey](https://github.com/aws-samples/AWS-First-GenAI-Journey). Below are the detailed steps for setting up the **Stock-Assistant** application using **Amazon Bedrock** and **Anthropic's Claude 3 Sonnet Model**.
-
----
+An intelligent stock trading agent powered by Amazon Bedrock for market analysis and trading recommendations.
 
 ## Overview
 
-The **Stock-Assistant** project demonstrates how to deploy an AI-driven assistant for interacting with stock-related data using **Amazon Bedrock** for model inference and **Claude 3 Sonnet** for natural language processing, integrated with **Langchain** and **Streamlit** for smooth end-user interaction.
+This project leverages AWS Bedrock's AI capabilities to analyze stock market data, generate insights, and provide trading recommendations using advanced machine learning models.
 
-### Key Technologies:
-- **Amazon Bedrock**: Managed service for foundational AI model deployment.
-- **Anthropic Claude 3 Sonnet**: A cutting-edge NLP model for text generation and comprehension.
-- **Langchain**: Framework to connect LLMs with other data or external services.
-- **Streamlit**: Web app framework for creating interactive data-driven tools.
+## Project Structure
 
-For more details on the core technologies, refer to the following links:
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Claude 3](https://www.anthropic.com/news/claude-3-family)
-
----
-
-## Setup Instructions
-
-### 1. Install Python
-Ensure Python 3 is installed in your system. Follow the official guide for setup:
-- [Python Installation Guide](https://docs.python-guide.org/starting/install3/linux/)
-
-### 2. Create a Python Virtual Environment
-It's recommended to isolate dependencies by setting up a virtual environment.
-```bash
-# Install virtualenv if not installed
-pip install virtualenv
-
-# Create a virtual environment
-virtualenv venv
-
-# Activate the virtual environment
-source venv/bin/activate   # For Linux/macOS
-# OR
-venv\Scripts\activate      # For Windows
+```
+.
+├── img/                  # Image resources
+├── pages/               # Application pages
+├── architecture.png     # System architecture diagram
+├── base.py             # Base configurations and utilities
+├── company.json        # Company and stock configurations
+├── data-01.csv         # Historical stock data
+├── data-02.csv         # Market indicators data
+├── Home.py            # Main application entry point
+├── libs.py            # Utility libraries
+├── requirements.txt   # Project dependencies
+└── README.md         # Documentation
 ```
 
-### 3. Install AWS CLI
-To interact with Amazon Bedrock, install the AWS Command Line Interface (CLI):
-```bash
-# Install AWS CLI (for Linux/macOS)
-curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
-sudo installer -pkg AWSCLIV2.pkg -target /
+## Features
 
-# Configure AWS CLI
-aws configure
+- Real-time stock data analysis
+- AI-powered trading recommendations
+- Market trend predictions
+- Company financial analysis
+- Portfolio optimization
+- Risk assessment
+- Custom indicators and alerts
+
+## Prerequisites
+
+- Python 3.12+
+- AWS Account with Bedrock access
+- Financial data provider API credentials
+- Required Python packages (listed in requirements.txt)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/AWS-Stock-Agent-with-Bedrock.git
+cd AWS-Stock-Agent-with-Bedrock
 ```
 
-Refer to the [AWS CLI Quickstart Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html) for more details.
-
-### 4. Clone and Run the Stock-Assistant Application
+2. Create and activate virtual environment:
 ```bash
-# Clone the repository
-git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
+```
 
-# Change to the project directory
-cd AWS-First-GenAI-Journey/stock-assistant
-
-# Install dependencies
+3. Install dependencies:
+```bash
 pip install -r requirements.txt
-
-# Run the app using Streamlit
-streamlit run Home.py --server.port 8501
 ```
 
-The app should be accessible in your browser at `http://localhost:8501`.
+## Environment Configuration
 
----
+Create a `.env` file in the root directory:
+```
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+STOCK_API_KEY=your_stock_api_key
+```
 
-## Architecture Overview
+## Data Files
 
-The Stock-Assistant uses a layered architecture designed for flexibility and scalability:
+- `data-01.csv`: Historical stock price data
+- `data-02.csv`: Market indicators and metrics
+- `company.json`: Company profiles and trading parameters
 
-1. **User Interface (UI)**: Built using **Streamlit**, providing an interactive platform for users to query stock-related information.
-2. **Application Layer**: Uses **Langchain** to manage interactions between the user input, data sources, and **Claude 3** model.
-3. **Model Inference**: Leverages **Amazon Bedrock** to serve the **Claude 3 Sonnet** model from Anthropic for intelligent responses.
+## Usage
 
-![Architecture](./architecture.png)
+1. Start the application:
+```bash
+python Home.py
+```
 
----
+2. Using base utilities:
+```python
+from base import initialize_agent
 
-## Learn More
+# Initialize trading agent
+agent = initialize_agent(config_path='company.json')
+```
 
-### Prompts and AI Model
-Explore how to design prompts for effective interaction with **Claude 3** and learn more about the capabilities of the model:
-- [Introduction to Prompt Design](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
-- [Claude 3 Model Card](https://www-cdn.anthropic.com/de8ba9b01c9ab7cbabf5c33b80b7bbc618857627/Model_Card_Claude_3.pdf)
+3. Using library functions:
+```python
+from libs import analyze_stock
+
+# Analyze specific stock
+analysis = analyze_stock(symbol='AAPL')
+```
+
+## Architecture
+
+The `architecture.png` provides a detailed overview of:
+- System components
+- Data flow
+- AWS service integration
+- Processing pipeline
+
+## Trading Strategy Implementation
+
+```python
+from libs import TradingStrategy
+
+strategy = TradingStrategy(
+    risk_level='moderate',
+    time_horizon='medium',
+    capital=100000
+)
+```
+
+## Risk Management
+
+- Position sizing rules
+- Stop-loss implementation
+- Portfolio diversification
+- Risk metrics monitoring
+
+## Performance Monitoring
+
+- Real-time performance tracking
+- Historical performance analysis
+- Risk-adjusted returns calculation
+- Transaction cost analysis
+
+## Security Best Practices
+
+- Secure credential management
+- API key rotation
+- Access control implementation
+- Data encryption
+- Regular security audits
+
+## Troubleshooting
+
+Common issues and solutions:
+- API connection errors
+- Data synchronization issues
+- Model inference delays
+- Order execution failures
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

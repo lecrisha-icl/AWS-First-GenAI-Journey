@@ -1,75 +1,190 @@
-# AWS First GenAI
+# Content Moderation with Amazon Bedrock
 
-## Overview 
-This is a simple demo of Amazon Bedrock and Anthropic Claude 3.5 model with langchain library. For more detail please reference the following links:
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-- [Anthropic Claude 3.5](https://www.anthropic.com/claude)
+An intelligent content moderation system powered by Amazon Bedrock for automated content filtering and analysis.
 
-## Prerequisites
-- [Python Installation Guide](https://docs.python-guide.org/starting/install3/linux/)
-- [AWS CLI Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
-- Python 3.10 or higher
-- AWS account with Bedrock access
+## Project Structure
 
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone 
-   ```
-
-2. Navigate to project directory:
-   ```bash
-   cd AWS-First-GenAI
-   ```
-
-3. Create and activate Python virtual environment:
-   ```bash
-   # Windows
-   python -m venv venv-python3.10
-   .\venv-python3.10\Scripts\activate
-
-   # macOS/Linux
-   python3.10 -m venv venv-python3.10
-   source venv-python3.10/bin/activate
-   ```
-
-4. Install required packages:
-   ```bash
-   pip3 install -r requirements.txt
-   ```
-
-5. Run the Streamlit application:
-   ```bash
-   streamlit run Home.py --server.port 8080
-   ```
-
-## Important Resources
-- [Introduction to Prompt Design](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design)
-
-## Features
-- Integration with Amazon Bedrock
-- Anthropic Claude 3.5 implementation
-- Streamlit web interface
-- LangChain implementation
-
-## Configuration
-Ensure your AWS credentials are properly configured with access to Bedrock service. You can configure AWS credentials using:
-```bash
-aws configure
+```
+.
+├── check_in/               # Check-in verification module
+├── check_uniform/          # Uniform content checking
+├── content_moderation/     # Core moderation module
+├── content_moderation.1/   # Extended moderation features
+├── product_description/    # Product content analysis
+├── Home.py                # Main application entry
+├── image_lib.py           # Image processing utilities
+├── Libs.py               # Common utility functions
+├── Main.py               # Application core
+└── requirements.txt      # Project dependencies
 ```
 
-To use Claude 3.5 in Bedrock, make sure to specify the model ID as "anthropic.claude-3.5-sonnet" in your configuration.
+## Features
 
-## Dependencies
-- langchain==0.0.343
-- streamlit
-- boto3
-- botocore
-- python-dotenv
-- Additional dependencies listed in requirements.txt
+- Real-time content moderation
+- Multi-modal content analysis (text, images)
+- Customizable moderation rules
+- Content classification
+- Automated content filtering
+- Detailed moderation reports
+- Batch processing capabilities
 
-## Support
-For more information about the components used:
-- Amazon Bedrock: [AWS Bedrock Documentation](https://aws.amazon.com/bedrock/)
-- Anthropic Claude: [Claude Documentation](https://www.anthropic.com/claude)
-- LangChain: [LangChain Documentation](https://python.langchain.com/docs/get_started/introduction.html)
+## Prerequisites
+
+- Python 3.12+
+- AWS Account with Bedrock access
+- Required permissions for AWS services
+- Basic understanding of content moderation principles
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Content-Moderation-with-Amazon-Bedrock.git
+cd Content-Moderation-with-Amazon-Bedrock
+```
+
+2. Set up virtual environment:
+```bash
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Environment Configuration
+
+Create a `.env` file in the root directory:
+```
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_DEFAULT_REGION=your_region
+MODERATION_THRESHOLD=0.8
+```
+
+## Usage
+
+### Basic Content Moderation
+
+```python
+from content_moderation import moderate_content
+
+result = moderate_content(
+    content="Your content here",
+    content_type="text"
+)
+```
+
+### Image Moderation
+
+```python
+from image_lib import process_image
+from content_moderation import moderate_image
+
+# Process and moderate image
+image = process_image("path/to/image.jpg")
+result = moderate_image(image)
+```
+
+### Batch Processing
+
+```python
+from Main import batch_moderate
+
+results = batch_moderate(
+    content_list=["content1", "content2"],
+    content_type="text"
+)
+```
+
+## Moderation Rules
+
+Customize moderation rules in `content_moderation/rules.json`:
+```json
+{
+    "profanity_threshold": 0.8,
+    "sensitive_content_threshold": 0.7,
+    "violence_threshold": 0.9
+}
+```
+
+## Content Categories
+
+The system moderates content across multiple categories:
+- Profanity
+- Adult content
+- Violence
+- Hate speech
+- Personal information
+- Spam/Scam content
+- Custom categories
+
+## Performance Optimization
+
+- Batch processing for multiple items
+- Caching for frequent content
+- Optimized image processing
+- Rate limiting implementation
+
+## API Reference
+
+### Moderation API
+
+```python
+moderate_content(
+    content: str,
+    content_type: str,
+    threshold: float = 0.8
+) -> ModerationResult
+```
+
+### Image Processing API
+
+```python
+process_image(
+    image_path: str,
+    resize: bool = True,
+    max_size: tuple = (1024, 1024)
+) -> ProcessedImage
+```
+
+## Security Best Practices
+
+- Input validation
+- Content encryption
+- Secure API endpoints
+- Access control implementation
+- Regular security audits
+
+## Monitoring and Logging
+
+- CloudWatch integration
+- Performance metrics
+- Error tracking
+- Moderation statistics
+- Usage analytics
+
+## Troubleshooting
+
+Common issues and solutions:
+- API rate limits
+- Image format support
+- Content size limits
+- Processing timeouts
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/YourFeature`)
+3. Commit changes (`git commit -m 'Add YourFeature'`)
+4. Push to branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

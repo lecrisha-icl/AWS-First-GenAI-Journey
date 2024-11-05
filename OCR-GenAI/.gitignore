@@ -1,7 +1,3 @@
-check_in/__pycache__/check_in_app.cpython-312.pyc
-check_in/__pycache__/check_uniform_app.cpython-312.pyc
-__pycache__
-.DS_Store
 # Environment variables
 .env
 .env.*
@@ -43,52 +39,49 @@ env/
 Thumbs.db
 
 # Project specific
+input/
 output/
-generated_descriptions/
-templates/
-product_data/
-moderation_logs/
-cache/
+processed/
 temp/
+cache/
+results/
 
-# Content files
-*.csv
-*.xlsx
-*.json
-!examples/*.csv
-!examples/*.json
-!templates/*.json
-
-# Images
+# OCR input/output
 *.jpg
 *.jpeg
 *.png
-*.gif
-product_images/
-!examples/images/*.jpg
+*.tiff
+*.bmp
+*.pdf
+*.docx
+*.txt
+!requirements.txt
+!examples/*.jpg
+!examples/*.pdf
 
-# Logs and Reports
+# Generated files
+*.out
+*.json
+*.xml
+*.csv
+extracted_text/
+processed_docs/
+
+# Logs and temporary
 logs/
-reports/
 *.log
-statistics/
-analytics/
-
-# Product Data
-products/
-descriptions/
-categories/
-brands/
-*.prod
-*.desc
+temp/
+.tmp/
+*.temp
+~*
 
 # Credentials
 .aws/
 credentials
 config
-secrets/
 *.pem
 *.key
+secrets/
 
 # Testing
 .coverage
@@ -103,11 +96,15 @@ coverage.xml
 docs/_build/
 site/
 
-# Temporary files
-*.bak
-*.tmp
-*.temp
-~*
+# Model files
+*.model
+*.weights
+*.bin
+
+# Cache
+__pycache__/
+.cache/
+.pytest_cache/
 
 # System files
 .DS_Store
@@ -117,12 +114,5 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# Backup files
-*~
-*.bak
-*.swp
-*.swo
-
-# Local development
-local_settings.py
-dev_config.py
+# Jupyter Notebook
+.ipynb_checkpoints
