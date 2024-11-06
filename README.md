@@ -2,7 +2,7 @@
 
 A comprehensive collection of Generative AI projects powered by Amazon Bedrock, showcasing diverse applications across industries. This repository contains ready-to-deploy solutions for various use cases, from translation and education to financial analysis and HR management.
 
-## Projects Overview
+## Projects Overview 
 
 ### Text and Language Processing
 1. **AWS-AI-Powered-Translation-Assistant**
