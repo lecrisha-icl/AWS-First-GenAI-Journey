@@ -23,7 +23,7 @@ async function getUserInput(question)
 
 async function main()
 {
-  console.info(`Hello and welcome to AnyCompany, how can I help you today?`);
+  console.info(`Hello, how can I help you today?`);
 
   while (true)
   {
