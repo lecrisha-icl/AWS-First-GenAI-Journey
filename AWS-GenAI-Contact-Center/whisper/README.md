@@ -16,7 +16,7 @@ In order to run the example in this repo, navigate to the [notebook](./whisper-i
 
 The Jupyter notebook deploys a SageMaker endpoint with a custom inference script similar to this [example in the SageMaker SDK documentation](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/xgboost_abalone/xgboost_inferenece_script_mode.html). The components required to deploy a pre-trained model to an endpoint in SageMaker are 1) a serialized model artifact (tar file) in Amazon S3 and 2) the code and requirements which runs inference. These components are then packaged into a SageMaker endpoint which serves the serialized model with custom code behind as an API. See the architecture below for a visual description.
 
-![arch](https://github.com/vuongbachdoan/PRSV24-HACKATHON-GENAI/blob/main/call_center/call_system_architecture.png?raw=true)
+![arch](https://raw.githubusercontent.com/vuongbachdoan/AWS-First-GenAI-Journey/4597197b1a70e7e4129b11c7e0075ef9522c826b/AWS-GenAI-Contact-Center/whisper/imgs/endpoint-arch.svg)
 
 
 ## Disclaimer
