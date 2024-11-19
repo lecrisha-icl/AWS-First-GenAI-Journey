@@ -51,15 +51,16 @@ Ensure the following output format:
 - Description: <output>
 - ###### Severity: <output>
 - ###### A snippet of affected code:
-```
-<output>
-```
+    ```
+    <output>
+    ```
 - ###### Mitigation walkthrough:
 <output>
+
 - ###### Improved code:
-```
-<output>
-```
+    ```
+    <output>
+    ```
 ---
 
 Focus on clarity and detail to ensure that your analysis is thorough and understandable."
