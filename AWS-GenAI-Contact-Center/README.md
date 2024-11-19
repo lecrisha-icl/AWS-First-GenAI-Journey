@@ -1,4 +1,4 @@
-# First Cloud Journey Cloud Day - Generative AI Call Center
+# Generative AI Contact Center
 
 This guide provides step-by-step instructions to create a call center solution that integrates Amazon Bedrock as an AI assistant and uses OpenAI's Whisper model for real-time voice-to-text transcription. The implementation will utilize Amazon SageMaker to deploy Whisper and Amazon Bedrock to enhance the interaction with AI-driven responses.
 
@@ -9,7 +9,10 @@ This guide provides step-by-step instructions to create a call center solution t
 - [Setup Instructions](#setup-instructions)
   - [Step 1: Create Whisper Endpoint](#step-1-create-whisper-endpoint)
   - [Step 2: Deploy Lambda Function](#step-2-deploy-lambda-function)
-  - [Step 3: Set Up Amazon Connect Flow](#step-3-set-up-amazon-connect-flow)
+  - [Step 3: Create Amazon Connect Instance](#step-3-create-amazon-connect-instance) 
+  - [Step 4: Add Lambda function to using with your Amazon Connect](#step-4-add-lambda-function-to-using-with-your-amazon-connect)
+  - [Step 5: Enable KVS media streaming](#step-5-enable-kvs-media-streaming)
+  - [Step 6: Set Up Amazon Connect Flow](#step-6-set-up-amazon-connect-flow)
 - [Congratulations](#congratulations)
 
 ## Prerequisites
@@ -54,6 +57,8 @@ The Jupyter notebook deploys a SageMaker endpoint with a custom inference script
 2. The code and requirements that run inference.
 
 These components are packaged into a SageMaker endpoint, which serves the serialized model with custom code behind it as an API. See the architecture below for a visual description.
+
+> It can take upto 15 minutes to create Whisper Endpoint
 
 ![Architecture](https://raw.githubusercontent.com/vuongbachdoan/AWS-First-GenAI-Journey/4597197b1a70e7e4129b11c7e0075ef9522c826b/AWS-GenAI-Contact-Center/whisper/imgs/endpoint-arch.svg)
 
