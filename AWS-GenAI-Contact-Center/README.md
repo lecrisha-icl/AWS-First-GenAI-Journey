@@ -35,9 +35,16 @@ Before getting started, ensure you have the following:
 
 ## Setup Instructions
 
+Before you go, clone this repository to your local machine:
+
+```bash
+git clone https://github.com/aws-samples/AWS-First-GenAI-Journey
+cd AWS-GenAI-Contact-Center
+```
+
 ### Step 1: Create Whisper Endpoint
 
-**About Whisper**  
+#### About Whisper  
 The Whisper endpoint is a powerful tool for speech recognition, offering extensive capabilities for transcription and understanding spoken language across various applications. It leverages advanced machine learning techniques to deliver accurate and efficient transcriptions.
 
 #### How it Works
@@ -64,9 +71,9 @@ These components are packaged into a SageMaker endpoint, which serves the serial
 
 #### Run Notebook
 
-1. Navigate to the `/whisper` folder in your current repository.
+1. Navigate to the `/whisper` folder in your local repository.
 2. Copy all files and folders, upload them to the current notebook, and run the notebook.
-3. It is recommended to run every cell one by one.
+3. It is recommended to run every cell **one by one**.
 4. The folder structure will look like this:
 
 ![Folder Structure](https://github.com/vuongbachdoan/fcj-cd-demo/blob/main/whisper/imgs/notebook.png?raw=true)
@@ -75,21 +82,17 @@ These components are packaged into a SageMaker endpoint, which serves the serial
 
 ### Step 2: Deploy Lambda Function
 
-1. Navigate to `/amazon-connect` in your current repository.
-2. Run the following command on your local computer:
+1. Navigate to `/amazon-connect` in your local repository.
+    ```
+    cd amazon-connect
+    ```
+2. Makesure AWS Profile already setup on local local machine:
 
     ```bash
     aws configure
     ```
 
-   Then enter your AWS Access Key ID, AWS Secret Access Key, and Default region name (**us-west-2**).
-
-3. Clone the repository:
-
-    ```bash
-    git clone https://github.com/vuongbachdoan/fcj-cd-demo.git
-    cd amazon-connect
-    ```
+   Then enter your AWS Access Key ID, AWS Secret Access Key, and set default region name to (**us-west-2**).
 
 4. Create a `.env` file:
 
@@ -110,26 +113,28 @@ These components are packaged into a SageMaker endpoint, which serves the serial
     ```bash
     ./scripts/serverless_deploy.sh dev
     ```
+After doing this, there are 3 Lambda functions, 3 DynamoDB tables, SQS will be created in your accounts.
+### Step 3: Create Amazon Connect Instance
 
-7. Set up a contact flow that starts media streaming and passes the following parameters to the ProcessStream Lambda:
-   - `kvsStreamArn`: the stream ARN from the contact attribute in Connect.
-   - `kvsStartFragment`: the KVS start fragment number from the contact attribute in Connect.
+Follow this document to create Amazon Connect Instance
+[https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-instances.html](https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-instances.html)
 
-8. Add any Lambda functions used to the Amazon Connect instance. The `ContactId` is fetched from the standard request attribute:
+### Step 4: Add Lambda function to using with your Amazon Connect
 
-    ```python
-    event.Details.ContactData.ContactId
-    ```
 
-9. This should start populating an IVR real-time transcript into DynamoDB.
+Go to **Contact Flow** > Scroll down to **AWS Lambda** and add 3 previous Lambda functions
 
-10. **Enable KVS media streaming** in your Amazon Connect instance and set a sane retention period for KVS (24 hours minimum during testing).
+![Add Lambda function](https://docs.aws.amazon.com/images/connect/latest/adminguide/images/lambda-add-myfirstconnectlambda.png)
+
+
+### Step 5: Enable KVS media streaming
+Enable KVS media stream in your Amazon Connect instance and set a retention period for KVS (24 hours minimum during testing).
 
 ![KVS Enable](https://github.com/vuongbachdoan/fcj-cd-demo/blob/main/amazon-connect/doc/enable_kvs.png?raw=true)
 
-### Step 3: Set Up Amazon Connect Flow
+### Step 6: Set Up Amazon Connect Flow
 
-1. Access your Amazon Connect instance with your account credentials.
+1. Access your Amazon Connect instance with the credentials you created before.
 2. Create a flow using the template located at `amazon-connect/contact_flow/prsv-aws-connect-flow.json`.
 3. Claim a phone number by navigating to **Phone numbers > Voice > Toll free > Choose the flow you imported previously**.
 4. You're all set! Call your contact center now.
