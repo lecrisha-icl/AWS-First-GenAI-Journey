@@ -48,7 +48,7 @@ The Jupyter notebook deploys a SageMaker endpoint with a custom inference script
 
 These components are packaged into a SageMaker endpoint, which serves the serialized model with custom code behind it as an API. See the architecture below for a visual description.
 
-![Architecture](https://github.com/vuongbachdoan/fcj-cd-demo/blob/main/whisper/imgs/endpoint-arch.png?raw=true)
+![Architecture](https://raw.githubusercontent.com/vuongbachdoan/AWS-First-GenAI-Journey/4597197b1a70e7e4129b11c7e0075ef9522c826b/AWS-GenAI-Contact-Center/whisper/imgs/endpoint-arch.svg)
 
 #### Setup SageMaker Notebook
 
