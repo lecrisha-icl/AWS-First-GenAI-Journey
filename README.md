@@ -139,6 +139,10 @@ Each project includes detailed setup instructions in its respective directory. G
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for security information.
 
+
+# Contributors
+[![contributors](https://contrib.rocks/image?repo=aws-samples/AWS-First-GenAI-Journey&max=2000)](https://github.com/aws-samples/AWS-First-GenAI-Journey/graphs/contributors)
+
 ## License
 
 This project is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file for details.
